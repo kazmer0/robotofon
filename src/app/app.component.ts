@@ -3,6 +3,7 @@ import { RouterOutlet} from '@angular/router';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import * as THREE from "three";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import gsap from 'gsap'
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,8 @@ export class AppComponent implements AfterViewInit{
 }
   ngAfterViewInit(): void {
     //Create a Three.JS Scene
+
+const helper = new THREE.GridHelper();
 const scene = new THREE.Scene();
 //create a new camera with positions and angles
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 1000);
@@ -53,8 +56,9 @@ loader.load(
     console.log('Object Children:', object.children);
 
     // Scale, position, and add object to scene
-    object.scale.set(1, 1, 1); // Scale
-    object.position.set(0, 0, 0); // Position
+
+    object.scale.set(10, 10, 10); // Scale
+    object.position.set(0, -1, -0.75); // Position
     scene.add(object);
 
     // Debug scene contents
@@ -73,20 +77,26 @@ loader.load(
 const bakedTexture = textureLoader.load('/assets/objxilofon/vegrekeszvan.png')
 */
   //Instantiate a new renderer and set its size
-  const renderer = new THREE.WebGLRenderer({ alpha: true }); //Alpha: true allows for the transparent background
+  const renderer = new THREE.WebGLRenderer({ alpha: true,antialias:true }); //Alpha: true allows for the transparent background
   renderer.setSize(window.innerWidth, window.innerHeight);
-
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
   //Add the renderer to the DOM
   const container3D=document.getElementById("container3D");
   if(container3D != null) {
   container3D.appendChild(renderer.domElement);
   }
+
+
+
+
   //Set how far the camera will be from the 3D model
-  camera.position.x = 1.9144501079890615;
-  camera.position.y = 3.1115007388799683;
-  camera.position.z = -1.8487368383750664;
+  camera.position.x = 1.4311579052134409;
+  camera.position.y = 2.7686114734175713;
+  camera.position.z = -4.3731149087753876;
 
 camera.lookAt(0, 0, 0);
+const control=new OrbitControls(camera, renderer.domElement);
 
 
   //Add lights to the scene, so we can actually see the 3D model
@@ -97,25 +107,112 @@ camera.lookAt(0, 0, 0);
 
   const ambientLight = new THREE.AmbientLight(0x333333,1);
   scene.add(ambientLight);
+ scene.add(helper);
 
-  //This adds controls to the camera, so we can rotate / zoom it with the mouse
-  if (objToRender === "xilofon") {
-    controls = new OrbitControls(camera, renderer.domElement);
-  }
-
-  //Render the scene
   const clock = new THREE.Clock();
+
   function animate() {
-   // console.log( "X= "+camera.position.x);
-   // console.log( "Y= "+camera.position.y);
-   // console.log( "Z= "+camera.position.z);
    if(mixer){mixer.update(clock.getDelta());}
 
     requestAnimationFrame(animate);
     //Here we could add some code to update the scene, adding some automatic movement
-
+    control.update;
     renderer.render(scene, camera);
   }
+
+  window.addEventListener("keydown", checkKeyPressed, false);
+
+function checkKeyPressed(e:any) {
+
+  //alert(e.keyCode);
+    switch (e.keyCode){
+      //a
+      case 65:
+        camera.position.x+=0.1;
+        camera.lookAt(0,0,0);
+        break;
+      case 83:
+        //s
+        camera.position.x-=0.1;
+        camera.lookAt(0,0,0);
+        break;
+      case 74:
+        //j
+        camera.position.y+=0.1;
+        camera.lookAt(0,0,0);
+        break;
+      case 75:
+        //k
+        camera.position.y-=0.1;
+        camera.lookAt(0,0,0);
+        break;
+      case 100:
+        //4
+        camera.position.z+=0.1;
+        camera.lookAt(0,0,0);
+        break;
+      case 101:
+        //5
+        camera.position.z-=0.1;
+        camera.lookAt(0,0,0);
+        break;
+      case 13:
+        //enter
+        console.log(
+          "x: ",camera.position.x, ',',
+          "y: ",camera.position.y, ',',
+          "z: ",camera.position.z, ',',
+          "camera.lookAt(",camera.lookAt,")"
+        )
+        break;
+      case 81:
+        //q
+
+        gsap.to(camera.position,{
+          x:  -1.6444205236946492 , y:  4.581992564794253 , z:  2.2207002992387426 ,
+          duration:2,
+          onUpdate: function(){
+            camera.lookAt(0,0,0);
+          }
+        })
+
+        break;
+        case 87:
+          //w
+
+        gsap.to(camera.position,{
+          x:  -0.7502532651760021 , y:  0.35723573158715555 , z:  -0.38937265156417045 ,
+          duration:2,
+        onComplete: function(){
+          const rand=document.getElementById("rand");
+          if(rand !=null){
+
+          rand.style.display="block";}
+
+          window.addEventListener("keydown", checkKeyPressed, false);
+
+function checkKeyPressed(e:any) {
+  if(e.keyCode==66){
+            const asd=document.getElementById("asd");
+            if(asd !=null){
+
+            asd.style.display="block";}}
+            }}})
+
+        break;
+        case 69:
+          //e
+
+        gsap.to(camera.position,{
+          x:  -1.6444205236946492 , y:  4.581992564794253 , z:  2.2207002992387426 ,
+          duration:2,
+
+        })
+
+        break;
+    }
+
+}
 
   //Add a listener to the window, so we can resize the window and the camera
   window.addEventListener("resize", function () {
@@ -123,13 +220,6 @@ camera.lookAt(0, 0, 0);
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
-
-  //add mouse position listener, so we can make the eye move
-  document.onmousemove = (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  }
-  console.log('asd',scene.children); // Check if the object is present in the scene
 
   //Start the 3D rendering
   animate();
