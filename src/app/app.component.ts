@@ -119,7 +119,7 @@ const control=new OrbitControls(camera, renderer.domElement);
     control.update;
     renderer.render(scene, camera);
   }
-
+var szamlalo=0;
   window.addEventListener("keydown", checkKeyPressed, false);
 
 function checkKeyPressed(e:any) {
@@ -165,8 +165,10 @@ function checkKeyPressed(e:any) {
           "camera.lookAt(",camera.lookAt,")"
         )
         break;
-      case 81:
-        //q
+      case 39:
+        szamlalo++;
+        switch(szamlalo){
+          case 1:
 
         gsap.to(camera.position,{
           x:  -1.6444205236946492 , y:  4.581992564794253 , z:  2.2207002992387426 ,
@@ -177,7 +179,7 @@ function checkKeyPressed(e:any) {
         })
 
         break;
-        case 87:
+        case 2:
           //w
 
         gsap.to(camera.position,{
@@ -187,20 +189,33 @@ function checkKeyPressed(e:any) {
           const rand=document.getElementById("rand");
           if(rand !=null){
 
-          rand.style.display="block";}
+          rand.style.display="flex";}
 
           window.addEventListener("keydown", checkKeyPressed, false);
 
 function checkKeyPressed(e:any) {
-  if(e.keyCode==66){
+  if(e.keyCode==39){
+    if(szamlalo==3){
             const asd=document.getElementById("asd");
             if(asd !=null){
 
             asd.style.display="block";}}
-            }}})
+
+    if(szamlalo==4){
+          const kosz=document.getElementById("kosz");
+          if(kosz !=null){
+
+          kosz.style.display="block";}}
+
+            }
+          }
+       }
+      }
+
+          )
 
         break;
-        case 69:
+        case 6:
           //e
 
         gsap.to(camera.position,{
@@ -210,6 +225,9 @@ function checkKeyPressed(e:any) {
         })
 
         break;
+        }
+
+      break;
     }
 
 }
