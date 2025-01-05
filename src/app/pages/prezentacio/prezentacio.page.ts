@@ -10,21 +10,18 @@ import gsap from 'gsap'
   templateUrl: './prezentacio.page.html',
   styleUrl: './prezentacio.page.scss'
 })
-export class PrezentacioPage implements OnInit {
+export class PrezentacioPage implements OnInit, AfterViewInit {
 
     constructor() {
-    }
+
+     }
+
 
     ngOnInit() {
     }
-
-}
-/*export class PrezentacioPage implements AfterViewInit{
-    title = 'robotofon';
-    constructor(private window: Window) {
-      // ...
-  }
     ngAfterViewInit(): void {
+
+
       //Create a Three.JS Scene
 
   const helper = new THREE.GridHelper(5,100);
@@ -79,7 +76,7 @@ export class PrezentacioPage implements OnInit {
     /*const textureLoader = new THREE.TextureLoader()
   const bakedTexture = textureLoader.load('/assets/objxilofon/vegrekeszvan.png')
   */
-/*    //Instantiate a new renderer and set its size
+    //Instantiate a new renderer and set its size
     const renderer = new THREE.WebGLRenderer({ alpha: true,antialias:true }); //Alpha: true allows for the transparent background
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -102,7 +99,7 @@ export class PrezentacioPage implements OnInit {
     camera.position.z =2.2436312936361453;
     camera.lookAt(1.6279145298771738,3.6804762719614774,1.7214525875037088);*/
 
-/*  const controls=new OrbitControls(camera, renderer.domElement);
+ const controls=new OrbitControls(camera, renderer.domElement);
 
   controls.target.set(0,0,0);
 
@@ -1007,7 +1004,6 @@ export class PrezentacioPage implements OnInit {
     animate();
     }
 
-    ngOnInit() {
-    }
+
+
   }
-*/
