@@ -1,1 +1,153 @@
-<p>taviranyito works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Táviránytó</title>
+    <meta
+      http-equiv="content-security-policy"
+      content="upgrade-insecure-requests"
+    />
+  </head>
+  <body>
+    <div class="content">
+      <button (click)="connect()">Connect to ESP32</button>
+
+      <div class="xilofon_container">
+        <div class="palca" id="felso_palca"></div>
+        <div class="palca" id="also_palca"></div>
+        <div class="xilofon">
+          <button
+            class="hangjegy"
+            id="C4"
+            (click)="play_C4()"
+            [disabled]="areButtonsDisabled"
+          ></button>
+
+          <button
+            class="hangjegy"
+            id="D"
+            (click)="play_D()"
+            [disabled]="areButtonsDisabled"
+          ></button>
+
+          <button
+            class="hangjegy"
+            id="E"
+            (click)="play_E()"
+            [disabled]="areButtonsDisabled"
+          ></button>
+
+          <button
+            class="hangjegy"
+            id="F"
+            (click)="play_F()"
+            [disabled]="areButtonsDisabled"
+          ></button>
+
+          <button
+            class="hangjegy"
+            id="G"
+            (click)="play_G()"
+            [disabled]="areButtonsDisabled"
+          ></button>
+
+          <button
+            class="hangjegy"
+            id="A"
+            (click)="play_A()"
+            [disabled]="areButtonsDisabled"
+          ></button>
+
+          <button
+            class="hangjegy"
+            id="B"
+            (click)="play_B()"
+            [disabled]="areButtonsDisabled"
+          ></button>
+
+          <button
+            class="hangjegy"
+            id="C5"
+            (click)="play_C5()"
+            [disabled]="areButtonsDisabled"
+          ></button>
+        </div>
+      </div>
+      <div class="gomb_container">
+        <button
+          class="gomb"
+          id="gomb_C4"
+          (click)="play_C4()"
+          [disabled]="areButtonsDisabled"
+        >
+          <p>Do(C) <br /><br />A</p>
+        </button>
+
+        <button
+          class="gomb"
+          id="gomb_D"
+          (click)="play_D()"
+          [disabled]="areButtonsDisabled"
+        >
+          <p>Re(D) <br /><br />S</p>
+        </button>
+
+        <button
+          class="gomb"
+          id="gomb_E"
+          (click)="play_E()"
+          [disabled]="areButtonsDisabled"
+        >
+          <p>Mi(E) <br /><br />D</p>
+        </button>
+
+        <button
+          class="gomb"
+          id="gomb_F"
+          (click)="play_F()"
+          [disabled]="areButtonsDisabled"
+        >
+          <p>Fa(F) <br /><br />F</p>
+        </button>
+
+        <button
+          class="gomb"
+          id="gomb_G"
+          (click)="play_G()"
+          [disabled]="areButtonsDisabled"
+        >
+          <p>Szo(G) <br /><br />G</p>
+        </button>
+
+        <button
+          class="gomb"
+          id="gomb_A"
+          (click)="play_A()"
+          [disabled]="areButtonsDisabled"
+        >
+          <p>La(A) <br /><br />H</p>
+        </button>
+
+        <button
+          class="gomb"
+          id="gomb_B"
+          (click)="play_B()"
+          [disabled]="areButtonsDisabled"
+        >
+          <p>Ti(B) <br /><br />J</p>
+        </button>
+
+        <button
+          class="gomb"
+          id="gomb_C5"
+          (click)="play_C5()"
+          [disabled]="areButtonsDisabled"
+        >
+          <p>Do(C) <br /><br />K</p>
+        </button>
+      </div>
+    </div>
+    <script src="taviranyito.page.ts"></script>
+  </body>
+</html>
