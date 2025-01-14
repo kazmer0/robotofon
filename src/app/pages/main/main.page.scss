@@ -1,0 +1,153 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.background{
+  height: 90vh;
+  width: 100%;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.section{
+  width: 100%;
+  height: 70vh;
+  background-color: wheat;
+  position: relative;
+  padding: 10vh 0 10vh 0;
+}
+.section2{
+  width: 100%;
+  height: 70vh;
+  background-color: bisque;
+  padding-bottom: 10vh 0 10vh 0;
+
+}
+.section{
+  display: flex;
+
+  .left{
+    height: 100%;
+    width: 50%;
+    background-color: brown;
+  }
+  .right{
+    height: 100%;
+    width: 50%;
+    background-color: purple;
+    position: relative;
+
+    h2{
+      font-size: 2em;
+      text-align: center;
+      width: 100%;
+      height: auto;
+      background-color: aqua;
+      padding-top: 2vh;
+    }
+
+    .textbox{
+      width: 80%;
+      height: 80%;
+      background-color: salmon;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+
+      p{
+        font-size: 1.6rem;
+      }
+
+      .buttonCont{
+        background-color: aqua;
+        width: 100%;
+        height: 7vh;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+
+        button{
+          width: 15vw;
+          height: 7vh;
+        }
+      }
+    }
+  }
+  .circle1{
+    width: 70vh;
+    height: 70vh;
+    background-color: aqua;
+    border-radius: 50%;
+    position: absolute;
+    left: 10% ;
+  }
+}
+.section2{
+  display: flex;
+
+  .right{
+    height: 100%;
+    width: 50%;
+    background-color: brown;
+  }
+  .left{
+    height: 100%;
+    width: 50%;
+    background-color: purple;
+    position: relative;
+
+    h2{
+      font-size: 2em;
+      text-align: center;
+      width: 100%;
+      height: auto;
+      background-color: aqua;
+      padding-top: 2vh;
+    }
+
+    .textbox{
+      width: 80%;
+      height: 80%;
+      background-color: salmon;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+
+      p{
+        font-size: 1.6rem;
+      }
+
+      .buttonCont{
+        background-color: aqua;
+        width: 100%;
+        height: 7vh;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+
+        button{
+          width: 15vw;
+          height: 7vh;
+        }
+      }
+    }
+  }
+  .circle1{
+    width: 70vh;
+    height: 70vh;
+    background-color: aqua;
+    border-radius: 50%;
+    position: absolute;
+    right : 10% ;
+  }
+
+}
+footer{
+  height: 10vh;
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataSender } from '../../services/funcs.services';
+import { DataSender } from '../../services/dataSender.services';
 import { BluetoothService } from '../../services/bluetooth.service';
 
 

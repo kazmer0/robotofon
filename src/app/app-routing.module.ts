@@ -1,6 +1,7 @@
 import { HangzaporPage } from './pages/hangzapor/hangzapor.page';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BociComponent } from './pages/hangzapor/boci/boci.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,7 @@ const routes: Routes = [
 },
 {
   path: 'hangzapor',
-  loadChildren: () => import('./pages/hangzapor/hangzapor.module').then(m => m.HangzaporPageModule)
+  loadChildren: () => import('./pages/hangzapor/hangzapor.module').then(m => m.HangzaporPageModule),
 },
 {
   path: 'prezentacio',

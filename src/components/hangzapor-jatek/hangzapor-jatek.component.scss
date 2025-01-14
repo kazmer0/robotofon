@@ -1,0 +1,203 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  height: 100svh;
+  margin: 0;
+  background-color: #f0f0f0;
+
+  #scoreDisplay {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+#startButton{
+  position: absolute;
+  z-index: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: green;
+
+}
+#startButton:hover{
+  cursor: pointer;
+  background-color: lightgreen;
+}
+#startButton:active{
+  background-color: darkgreen;
+}
+
+  #win {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    visibility: hidden;
+    z-index: 1;
+
+    b {
+      font-size: larger;
+      margin-bottom: 20px;
+      background-color: white;
+    }
+    .restart {
+      background-color: #000;
+      color: white;
+      border: none;
+      height: 50px;
+      width: 180px;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .restart:hover {
+      background-color: #444;
+    }
+    .nextLevel {
+      border: none;
+      background-color: green;
+      height: 50px;
+      border-radius: 50px;
+      width: 180px;
+      margin-top: 20px;
+    }
+    .nextLevel:hover {
+      background-color: greenyellow;
+    }
+  }
+
+  #lose {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    position: absolute;
+    z-index: 1;
+    visibility: hidden;
+
+    b {
+      font-size: larger;
+      margin-bottom: 20px;
+      background-color: white;
+    }
+
+    .vissza {
+      height: 50px;
+      border-radius: 50px;
+      width: 180px;
+      margin-top: 20px;
+      border: 1px solid black;
+      background-color: red;
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+    }
+    .restart {
+      background-color: #000;
+      color: white;
+      border: none;
+      height: 50px;
+      width: 180px;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .restart:hover {
+      background-color: #444;
+    }
+  }
+
+  #end {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    visibility: hidden;
+    z-index: 1;
+    text-align: center;
+
+    b {
+      font-size: larger;
+      margin-bottom: 20px;
+      background-color: white;
+    }
+
+    .vissza {
+      height: 50px;
+      border-radius: 50px;
+      width: 180px;
+      margin-top: 20px;
+      border: 1px solid black;
+      background-color: red;
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+    }
+    .restart {
+      background-color: #000;
+      color: white;
+      border: none;
+      height: 50px;
+      width: 180px;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .restart:hover {
+      background-color: #444;
+    }
+  }
+
+  #gameContainer {
+    display: flex;
+    width: 80%;
+    height: 90%;
+    max-height: 600px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+    .column {
+      flex: 1;
+      border-right: 1px solid #ddd;
+      position: relative;
+
+      .tile {
+        position: absolute;
+        width: 95%;
+        height: 50px;
+        background-color: #000;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.1s;
+      }
+
+      .tile:hover {
+        background-color: #444;
+      }
+    }
+    .column:last-child {
+      border-right: none;
+    }
+  }
+  @media screen and (max-width: 2000px) {
+    #gameContainer {
+      min-width: 300px;
+      width: 20%;
+      height: 90%;
+    }
+
+    .tile {
+      height: 100px;
+    }
+  }
+}
+

@@ -1,0 +1,41 @@
+<body>
+  <app-connect-button></app-connect-button>
+  <div id="scoreDisplay">Score: 0</div>
+
+  <div id="win">
+    <b>NYERTÉL!</b>
+    <button (click)="restart()" class="restart">INDÍTSD ÚJRA A JÁTÉKOT!</button>
+    <button (click)="nextLevel()" class="nextLevel">
+      A KÖVETKEZŐ SZINTRE!
+    </button>
+  </div>
+
+  <div id="lose">
+    <b>VESZTETTÉL!</b>
+
+    <button class="vissza">
+      <a href="/hangzapor">VISSZA A MENÜBE!</a>
+    </button>
+
+    <button (click)="restart()" class="restart">INDÍTSD ÚJRA A JÁTÉKOT!</button>
+  </div>
+
+  <div id="end">
+    <b>GRATULÁLOK! <br />MEGNYERTED A JÁTÉKOT </b>
+
+    <button class="vissza" style="background-color: green">
+      <a href="/hangzapor">VISSZA A MENÜBE!</a>
+    </button>
+
+    <button (click)="restart()" class="restart">INDÍTSD ÚJRA A JÁTÉKOT!</button>
+  </div>
+
+  <button id="startButton" (click)="startGame()">KATTINTS A STARTHOZ!</button>
+
+  <div id="gameContainer">
+    <div id="col1" class="column"></div>
+    <div id="col2" class="column"></div>
+    <div id="col3" class="column"></div>
+    <div id="col4" class="column"></div>
+  </div>
+</body>
