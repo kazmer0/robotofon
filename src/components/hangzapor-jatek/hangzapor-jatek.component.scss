@@ -1,3 +1,7 @@
+*{
+  margin: 0;
+  padding: 0;
+}
 body {
   display: flex;
   justify-content: center;
@@ -5,13 +9,14 @@ body {
   flex-flow: column;
   height: 100svh;
   margin: 0;
-  background-color: #f0f0f0;
+  background: url('../../assets/images/20248643_6213214.jpg') ;
 
   #scoreDisplay {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
+    color: white;
   }
 
 #startButton{
@@ -42,11 +47,11 @@ body {
     b {
       font-size: larger;
       margin-bottom: 20px;
-      background-color: white;
+      background-color:lightgray;
     }
     .restart {
       background-color: #000;
-      color: white;
+      color: lightgray;
       border: none;
       height: 50px;
       width: 180px;
@@ -81,7 +86,7 @@ body {
     b {
       font-size: larger;
       margin-bottom: 20px;
-      background-color: white;
+      background-color: lightgray;
     }
 
     .vissza {
@@ -99,7 +104,7 @@ body {
     }
     .restart {
       background-color: #000;
-      color: white;
+      color: lightgray;
       border: none;
       height: 50px;
       width: 180px;
@@ -124,7 +129,7 @@ body {
     b {
       font-size: larger;
       margin-bottom: 20px;
-      background-color: white;
+      background-color: lightgray;
     }
 
     .vissza {
@@ -142,7 +147,7 @@ body {
     }
     .restart {
       background-color: #000;
-      color: white;
+      color: lightgray;
       border: none;
       height: 50px;
       width: 180px;
@@ -160,14 +165,13 @@ body {
     width: 80%;
     height: 90%;
     max-height: 600px;
-    background-color: #fff;
-    border: 2px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: lightgray;
+    border: 2px solid #272727;
     overflow: hidden;
 
     .column {
       flex: 1;
-      border-right: 1px solid #ddd;
+      border-right: 1px solid white;
       position: relative;
 
       .tile {
