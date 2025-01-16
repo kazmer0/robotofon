@@ -1,0 +1,188 @@
+
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+:root{
+    --darktheme: #000;
+    --lightheme: #cad3f2;
+    --dark: #333;
+    --light: #fff;
+    --gradOrange: #D5A64A;
+    --gradPink: #E132F2;
+    --gradAqua: #0ACCCC;
+    --gradBlue: #1919D3;
+}
+body{
+  background-color: #000;
+ overflow: scroll;
+}
+.playerContainer{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+ul{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: transparent;
+
+  li{
+    position: relative;
+    list-style-type: none;
+
+.rectangle{
+    position: relative;
+    background: linear-gradient(to bottom right, rgba(250, 249, 249, 0.645),rgba(255, 255, 255, 0.145));
+    border: 0.1px solid rgba(206, 206, 206, 0.583);
+    border-radius: 20px;
+    max-width: 300px;
+    width: 300px;
+    height: 450px;
+    z-index: 1;
+    /* box-shadow: 0px 0px 10px #fff; */
+    /* filter: blur(1.2px); */
+    /* opacity: 0.95; */
+    /* animation: reflections 10s infinite; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .music-logo{
+    border: 0.1px solid rgba(206, 206, 206, 0.583);
+    border-radius: 20px;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px inset #fff;
+    color: var(--light);
+    transition: 0.5s ease-in;
+
+     i{
+      font-size: 6rem;
+      }
+    }
+    .controls{
+      height: 4px;
+      width: 210px;
+      background-color: lightgray;
+      display: flex;
+      justify-content: center;
+      border-radius: 5px;
+
+      .progress-container{
+        width: 100%;
+        height: 100%;
+        .progress-bar{
+          border-radius: 5px;
+          width: 10%;
+          height: 100%;
+          background-color: red ;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end ;
+
+          .progress-bar-circle{
+            width: 10px;
+            height: 10px;
+            background-color: red;
+          }
+
+        }
+
+      }
+    }
+    .controls-time{
+      width: 210px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color:var(--light);
+      font-weight: 200;
+
+  }
+  .music-name{
+    color:var(--light);
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  .player-btn{
+    width: 210px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color:var(--light);
+    font-size: 20px;
+
+    button{
+      background-color: transparent;
+      border:none;
+
+      img{
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+      img:hover{
+        opacity: 80%;
+      }
+      img:active{
+        opacity: 100%;
+      }
+    }
+    .rewind{
+      img{
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+      img:hover{
+        opacity: 80%;
+      }
+      img:active{
+        opacity: 100%;
+      }
+    }
+  }
+}
+
+/* toogle classes */
+.light-theme{
+    background-color: var(--lightheme) !important;
+}
+.light{
+    color: var(--light) !important;
+}
+.dark{
+    color:var(--dark) !important;
+
+}
+.bgdark{
+    background: var(--dark) !important;
+}
+.bglight{
+    background: var(--lightheme) !important;
+}
+.opacity{
+    opacity: 0.95;
+}
+.leftslider{
+    float: left !important;
+}
+.bolder{
+    font-weight: 400 !important;
+}
+
+}
+}
+}

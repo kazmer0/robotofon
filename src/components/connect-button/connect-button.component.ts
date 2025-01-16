@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BluetoothService } from '../../app/services/bluetooth.service';
+import { BluetoothService } from '../../app/services/system/bluetooth.service';
 
 @Component({
   selector: 'app-connect-button',

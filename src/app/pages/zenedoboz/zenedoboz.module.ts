@@ -3,15 +3,17 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import { ZenedobozPage } from './zenedoboz.page';
 import { ZenedobozPageRoutingModule } from './zenedoboz-routing.module';
+import { MusicPlayerComponent } from "../../../components/music-player/music-player.component";
 
 
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
-      ZenedobozPageRoutingModule
-    ],
+    CommonModule,
+    FormsModule,
+    ZenedobozPageRoutingModule,
+    MusicPlayerComponent
+],
     declarations: [ZenedobozPage],
 })
 export class ZenedobozPageModule {

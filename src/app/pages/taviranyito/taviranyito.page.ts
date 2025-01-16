@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataSender } from '../../services/dataSender.services';
-import { BluetoothService } from '../../services/bluetooth.service';
+import { DataSender } from '../../services/system/dataSender.services';
+import { BluetoothService } from '../../services/system/bluetooth.service';
 
 
 @Component({

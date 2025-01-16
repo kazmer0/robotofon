@@ -1,1 +1,58 @@
-<p>zenedoboz works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="playerContainer">
+      <ul>
+        <li *ngFor="let zene of zenek">
+          <div id="music-player" class="rectangle">
+            <!-- album logo -->
+            <div id="music-logo" class="music-logo">
+              <i class="fas fa-music"></i>
+            </div>
+            <!-- track length -->
+            <div id="controls" class="controls">
+              <div class="progress-container">
+                <div
+                  class="progress-bar"
+                  [style.width.%]="(100/zene.length)*(zene.length-zene.remainingTime)"
+                >
+                  <div class="progress-bar-circle"></div>
+                </div>
+              </div>
+            </div>
+            <!-- time -->
+            <div id="controls-time" class="controls-time">
+              <div class="starts-time">{{zene.length}}</div>
+              <div class="ends-time">-{{zene.remainingTime}}</div>
+            </div>
+            <!-- song name -->
+            <div id="music-name" class="music-name">{{zene.name}}</div>
+            <!-- player button and controls -->
+            <div id="player-btn" class="player-btn">
+              <button
+                *ngIf="this.zenek[zene.index].isPlaying == false "
+                (click)="playFromList(zene.index)"
+              >
+                <img src="../../../assets/svg/play-button-svgrepo-com.svg" />
+              </button>
+              <button
+                *ngIf="this.zenek[zene.index].isPlaying == true"
+                (click)="pauseFromList(zene.index)"
+              >
+                <img src="../../../assets/svg/pause-button-svgrepo-com.svg" />
+              </button>
+              <button class="rewind" (click)="rewind(zene.index)">
+                <img src="../../../assets/svg/rewind-svgrepo-com.svg" />
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
