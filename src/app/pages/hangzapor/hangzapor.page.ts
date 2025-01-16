@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
-import Swiper from 'swiper';
+import Swiper  from 'swiper';
+import { Navigation } from 'swiper/modules';
 
 @Component({
   selector: 'app-hangzapor',
@@ -10,6 +11,7 @@ export class HangzaporPage implements AfterViewInit {
   constructor() {}
 
   ngAfterViewInit(): void {
+    Swiper.use([Navigation]);
     const swiper = new Swiper('.slider-wrapper', {
       loop: true,
       grabCursor: true,
@@ -41,5 +43,7 @@ export class HangzaporPage implements AfterViewInit {
         },
       },
     });
+
+
   }
 }
