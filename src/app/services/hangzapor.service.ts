@@ -462,7 +462,7 @@ class Tile {
 
     this.element.addEventListener('click', () => {
       if (this === this.tiles[0]) {
-        //this.sendNote(note.key)
+        this.sendNote(note.key)
         this.column?.removeChild(this.element);
         this.exists = false;
         this.tiles.shift();

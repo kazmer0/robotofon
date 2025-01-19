@@ -21,10 +21,9 @@ export class BluetoothService {
         this.bluetoothWriter = await service.getCharacteristic('beb5483e-36e1-4688-b7f5-ea07361b26a8');
 
         this.isConnected = true; // Update connection status
-        console.log('Connected to ESP32');
       }
     } catch (error) {
-      console.error('Error connecting to Bluetooth device:', error);
+
       throw error;
     }
   }
@@ -36,7 +35,6 @@ export class BluetoothService {
   disconnect(): void {
     if (this.bluetoothDevice && this.bluetoothDevice.gatt) {
      this.bluetoothDevice.gatt.disconnect();
-      console.log('Disconnected from ESP32');
     }
     this.bluetoothDevice = null;
     this.bluetoothWriter = null;

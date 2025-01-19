@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ConnectButtonComponent } from "../connect-button/connect-button.component";
+import { BluetoothService } from '../../app/services/system/bluetooth.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -10,6 +11,9 @@ import { ConnectButtonComponent } from "../connect-button/connect-button.compone
 })
 
 export class NavigationBarComponent {
-  @Input() styleClass: string = '';
+constructor(public bluetooth:BluetoothService){}
 
+disconnect(){
+  this.bluetooth.disconnect();
+}
 }

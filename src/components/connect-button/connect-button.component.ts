@@ -15,7 +15,6 @@ export class ConnectButtonComponent {
       await this.bluetoothService.connectToESP32();
       alert('Connected to ESP32');
     } catch (error) {
-      alert('Failed to connect to ESP32');
     }
   }
   async connectToESP32() {
@@ -40,9 +39,7 @@ export class ConnectButtonComponent {
       const characteristic = await service.getCharacteristic('beb5483e-36e1-4688-b7f5-ea07361b26a8');
       bluetoothWriter = characteristic;
 
-      alert('Bluetooth connected');
     } catch (error) {
-      console.error('Error connecting to Bluetooth device:', error);
     }
   }
 }

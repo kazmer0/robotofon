@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class DataSender {
   constructor(private bluetoothService:BluetoothService) { }
 
-  devMode = true;
+  devMode = false;
 
   async  C4_hang(){
     if(this.devMode == false){
