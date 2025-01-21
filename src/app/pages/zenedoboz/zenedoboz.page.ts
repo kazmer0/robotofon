@@ -24,9 +24,9 @@ export class ZenedobozPage implements OnInit {
   }
   playFromList(index:number){
     this.zenek.forEach(e => {
-      if(e.index != index){
-        this.pauseFromList(e.index)
-      }
+      // if(e.index != index){
+      //   this.pauseFromList(e.index)
+      // }
       if(e.index == index){
         this.zenek[index].isPlaying = true;
         this.countdown(this.zenek[index].remainingTime, index)

@@ -12,8 +12,8 @@ export class ZenekService {
       {
         index:0,
         name:'Ciao Bella',
-        length:9,
-        remainingTime:9,
+        length:60,
+        remainingTime:60,
         imageURL:'',
         isPlaying:false,
       },

@@ -5,7 +5,7 @@ import { ConnectButtonComponent } from "../connect-button/connect-button.compone
 @Component({
   selector: 'app-hangzapor-jatek',
   standalone: true,
-  imports: [ConnectButtonComponent],
+  imports: [ConnectButtonComponent, ],
   templateUrl: './hangzapor-jatek.component.html',
   styleUrl: './hangzapor-jatek.component.scss'
 })
