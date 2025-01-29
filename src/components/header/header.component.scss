@@ -1,0 +1,83 @@
+$menuHeight: 55px;
+$menuBreakpoint: 768px;
+
+#my-first {
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #272727;
+  }
+
+  .logotype {
+    a {
+      font-size: 1.4rem;
+      text-decoration: none;
+      color: #fff;
+
+      div{
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        top: 2px;
+        left: 5%;
+        background: url('../../assets/images/feher_robot.png') round;
+      }
+    }
+  }
+
+  .burger {
+    padding: 0 10px;
+    border-left: 1px solid #eee;
+    display: none;
+    cursor: pointer;
+
+    i {
+      color: #fff;
+      line-height: $menuHeight;
+    }
+
+    @media (max-width: $menuBreakpoint) {
+      display: block;
+    }
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: $menuBreakpoint) {
+      display: none;
+
+      &.is-open {
+        display: block;
+        position: absolute;
+        top: #{$menuHeight + 2};
+        background: #272727;
+        width: 100%;
+
+        .menu-item {
+          border-bottom: 1px solid #cccccc;
+        }
+      }
+    }
+
+    .menu-item {
+      padding: 0 10px;
+      height: $menuHeight;
+      line-height: $menuHeight;
+      text-decoration: none;
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #fff;
+      margin-right: 20px;
+      transition: 0.2s linear;
+    }
+    .menu-item:hover{
+      background-color: rgb(111, 111, 111);
+    }
+  }
+}

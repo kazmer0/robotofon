@@ -37,9 +37,6 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
 
   //OrbitControls allow the camera to move around the scene
 
-  //Set which object to render
-  let objToRender = 'xilofon';
-
   //Instantiate a loader for the .gltf file
   const loader = new GLTFLoader();
   //Load the file
@@ -133,28 +130,46 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
   const slide1 = document.getElementById("slide1");
     const s1e1 = document.getElementById("s1e1");
     const s1e2 = document.getElementById("s1e2");
+    const s1e3 = document.getElementById("s1e3");
+
   const slide2 = document.getElementById("slide2");
     const s2e1 = document.getElementById("s2e1");
     const s2e2 = document.getElementById("s2e2");
     const s2e3 = document.getElementById("s2e3");
-  const slide3 = document.getElementById("slide3");
+    const s2e4 = document.getElementById("s2e4");
+    const s2e5 = document.getElementById("s2e5");
+    const s2e6 = document.getElementById("s2e6");
+    const s2e7 = document.getElementById("s2e7");
+    const s2e8 = document.getElementById("s2e8");
+    const s2e9 = document.getElementById("s2e9");
+    const s2e10 = document.getElementById("s2e10");
+    const s2e11 = document.getElementById("s2e11");
+
+
+    const slide3 = document.getElementById("slide3");
     const s3e1 = document.getElementById("s3e1");
     const s3e2 = document.getElementById("s3e2");
     const s3e3 = document.getElementById("s3e3");
     const s3e4 = document.getElementById("s3e4");
+    const s3e5 = document.getElementById("s3e5");
+    const s3e6 = document.getElementById("s3e6");
+    const s3e7 = document.getElementById("s3e7");
+    const s3e8 = document.getElementById("s3e8");
+
   const slide4 = document.getElementById("slide4");
     const s4e1 = document.getElementById("s4e1");
     const s4e2 = document.getElementById("s4e2");
     const s4e3 = document.getElementById("s4e3");
     const s4e4 = document.getElementById("s4e4");
     const s4e5 = document.getElementById("s4e5");
+
   const slide5 = document.getElementById("slide5");
     const s5e1 = document.getElementById("s5e1");
     const s5e2 = document.getElementById("s5e2");
     const s5e3 = document.getElementById("s5e3");
     const s5e4 = document.getElementById("s5e4");
     const s5e5 = document.getElementById("s5e5");
-    const s5e6 = document.getElementById("s5e6");
+
   const slide6 = document.getElementById("slide6");
     const s6e1 = document.getElementById("s6e1");
     const s6e2 = document.getElementById("s6e2");
@@ -163,6 +178,9 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     const s6e5 = document.getElementById("s6e5");
     const s6e6 = document.getElementById("s6e6");
     const s6e7 = document.getElementById("s6e7");
+    const s6e8 = document.getElementById("s6e8");
+    const s6e9 = document.getElementById("s6e9");
+
   const slide7 = document.getElementById("slide7");
     const s7e1 = document.getElementById("s7e1");
     const s7e2 = document.getElementById("s7e2");
@@ -170,8 +188,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     const s7e4 = document.getElementById("s7e4");
     const s7e5 = document.getElementById("s7e5");
     const s7e6 = document.getElementById("s7e6");
-    const s7e7 = document.getElementById("s7e7");
-    const s7e8 = document.getElementById("s7e8");
+
   const slide8 = document.getElementById("slide8");
     const s8e1 = document.getElementById("s8e1");
     const s8e2 = document.getElementById("s8e2");
@@ -236,6 +253,8 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     });
     if( nothingIsVisable()){
       szamlalo++;
+      controls.update();
+
     }
     updatecounters();
     console.log('s2id: '+s2ID);
@@ -256,29 +275,39 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     updatecounters();
   }
 
-  function handleState(
-    stateIndex: number,
-    id: number,
-    elements: (HTMLElement | null)[],
-    slide: HTMLElement | null,
-    maxId: number,
-    szamlaloBefore:number
+  function showElement(
+    stateIndex: number, //a states arrayből erre a statera vonatkozik (pl ha 0, akkor a 1es slidera)
+
+    id: number,//melyik slideID-t nézze (pl s1ID, ha az első slideon kell megjeleníteni elemet )
+
+    startFrom:number,//meghatározza, hogy hanyas slideID-tól kell kezdenie megjelenítenie az elementeket (pl 3, akkor csak az után fogja megjeleníteni az elmeket amiután a slideID 3)
+
+    elements: (HTMLElement | null)[],//melyik elemeket jelenítse meg (pl [s1e1,s1e2], ha az első előre gombnál az s1e1 elementet, a második előre gombnál az s1e2-t kell megjeleníteni)
+
+    slide: HTMLElement | null,//melyik slide (pl slide1)
+
+    maxId: number,//mennyi slideID-ig kell menni (pl 4, ha 3 elementet kell megjeleníteni )
+
+    szamlaloBefore:number//amennyi a szamlalo értéke, amikor a function hívva lett
+
   ): void {
     const state= states[stateIndex];
 
     if (state.isVisible == true) {
-      // Handle element visibility
+      // elemek mutatása
       elements.forEach((el, index) => {
         if (el !== null) {
-          if(id >= index+1){
+          if(id >= index+1+startFrom){
             el.style.display = "block";
+            el.style.zIndex = "1";
           }else{
             el.style.display = "none";
+            el.style.zIndex = "-1";
           }
         }
       });
 
-      // Handle specific conditions
+      // slide bezárása
       if (id === maxId) {
         console.log(state.isVisible)
         state.isVisible = false;
@@ -300,16 +329,36 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
   }
 
 
-  // Call the function to log the look-at position
-  var cameraX=0;
+
+function hideElement(
+  elements: (HTMLElement | null)[], //melyik elementet zárja be
+
+  slideID:number, //melyik slideID-t figyelje
+
+  id:number// mekkora legyen a slideID, amikor eltűntesse az elementeket
+){
+  elements.forEach((el, index) => {
+    if (el !== null) {
+      if(slideID>=id){
+        el.style.display="none"
+        el.style.zIndex="-1"
+      }
+    }
+  })
+}
+
+
+
+  // Kamera pozíció tesztelés
+  /*var cameraX=0;
   var cameraY=0;
   var cameraZ=0;
-
+*/
     window.addEventListener("keydown", checkKeyPressed, false);
 
   function checkKeyPressed(e:any) {
     switch (e.keyCode){
-      case 65:
+     /* case 65:
         //a
         cameraX=cameraX+0.1;
         camera.lookAt(cameraX,cameraY,cameraZ);
@@ -346,7 +395,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
           "y: ",camera.position.y, ',',
           "z: ",camera.position.z, ',',
         )
-         break;
+         break;*/
       case 39:
         elore();
         break;
@@ -367,7 +416,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x: 0,
         y: 0,
         z: 0,
-        duration: 2,
+        duration:1.5,
         ease: "power3.inOut",
         onUpdate: () => {
           controls.update();
@@ -377,7 +426,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x : 1.4311579052134409,
         y : 2.7686114734175713,
         z : -4.3731149087753876,
-        duration:2,
+        duration:1.5,
         onUpdate: function(){
         controls.update();
           }
@@ -391,7 +440,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x: 0,
         y: 0,
         z: -0.9,
-        duration: 2,
+        duration:1.5,
         ease: "power3.inOut",
         onUpdate: () => {
           controls.update();
@@ -401,45 +450,51 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x: -2,
         y: 5,
         z: 1.5,
-        duration: 2,
+        duration:1.5,
         ease: "power3.inOut",
         onUpdate: () => {
           controls.update();
+        },
+        onComplete: function(){
+          szamlalo++;
+          if(states[0].isVisible == false){
+            gsap.to(controls.target, {
+              x: 1.5 , y: -8.1 , z: -3.5 ,
+              duration:1.5,
+              ease: "power3.inOut",
+              onUpdate: () => {
+                controls.update();
+              }
+            });
+            gsap.to(camera.position,{
+              x:  -0.7502532651760021,
+              y:  0.35723573158715555,
+              z:  -0.38937265156417045,
+              duration:1.5,
+              onComplete: function(){
+                states[0].isVisible = true;
+                if(slide1 != null && s1e1){
+                  slide1.style.display = "flex";
+                  s1e1.style.display = "block";
+                  s1ID++;
+
+                }
+              }
+            })
+          }
         }
       });
     }
 
 
     if(szamlalo === 2){
-
-      if(states[0].isVisible == false){
-        gsap.to(controls.target, {
-          x: 1.5 , y: -8.1 , z: -3.5 ,       duration: 2,
-          ease: "power3.inOut",
-          onUpdate: () => {
-            controls.update();
-          }
-        });
-        gsap.to(camera.position,{
-          x:  -0.7502532651760021,
-          y:  0.35723573158715555,
-          z:  -0.38937265156417045,
-          duration:2,
-          onComplete: function(){
-            states[0].isVisible = true;
-            if(slide1 != null){
-              slide1.style.display = "flex";
-            }
-          }
-        })
-      }
-
-      handleState(0, s1ID, [s1e1, s1e2], slide1, 3, 2);
+      showElement(0, s1ID,0, [s1e1, s1e2,s1e3], slide1, 4, 2);
     }
 
     if(szamlalo == 3){
       gsap.to(controls.target, {
-        x: 0 , y: 0 , z: -0.9,       duration: 2,
+        x: 0 , y: 0 , z: -0.9,
+        duration:1.5,
         ease: "power3.inOut",
         onUpdate: () => {
           controls.update();
@@ -449,66 +504,79 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x: -2,
         y: 5 ,
         z: 1.5,
-        duration:2,
+        duration:1.5,
         ease:"power3.inOut",
+        onComplete: function(){
+          //----------D4----------------------
+          szamlalo++;
+          gsap.to(controls.target,{
+            x: 0,
+            y: -0.5,
+            z: 0,
+            duration:1.5,
+            ease:"power3.inOut",
+            onUpdate: () => {
+              controls.update();
+            }
+          })
+          gsap.to(camera.position,{
+            x:  -2.7208663238764426,
+            y:  3.5715675943095553,
+            z:  -3.3553718493391766 ,
+            duration:1.5,
+            ease:"power3.inOut",
+            onUpdate: () => {
+              controls.update();
+            },
+            onComplete: function(){
+              szamlalo++;
+              if(states[1].isVisible == false){
+                gsap.to(controls.target,{
+                  x: 0,
+                  y: -0.5,
+                  z: 0,
+                  duration:1.5,
+                  ease:"power3.inOut",
+                  onUpdate: () => {
+                    controls.update();
+                  }
+                })
+                gsap.to(camera.position,{
+                  x:  -0.6253931601248932,
+                  y:  0.3464956365479642,
+                  z:  -0.7922608098697215,
+                  duration:1.5,
+                  ease:"power3.inOut",
+                  onUpdate: () => {
+                    controls.update();
+                  },
+                  onComplete: function(){
+                    states[1].isVisible = true;
+                    if(slide2 != null && s2e1){
+                      slide2.style.display = "flex";
+                      s2e1.style.display = "block";
+                      s2ID++;
+
+                    }
+                  }
+                })
+              }
+            }
+          });
+        }
       })
     }
 
 
-  //----------D4----------------------
 
     if(szamlalo == 4){
-      gsap.to(controls.target,{
-        x: 0,
-        y: -0.5,
-        z: 0,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      })
-      gsap.to(camera.position,{
-        x:  -2.7208663238764426,
-        y:  3.5715675943095553,
-        z:  -3.3553718493391766 ,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      });
+
     }
     if(szamlalo == 5){
-      if(states[1].isVisible == false){
-      gsap.to(controls.target,{
-        x: 0,
-        y: -0.5,
-        z: 0,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      })
-      gsap.to(camera.position,{
-        x:  -0.6253931601248932,
-        y:  0.3464956365479642,
-        z:  -0.7922608098697215,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        },
-        onComplete: function(){
-          states[1].isVisible = true;
-          if(slide2 != null){
-            slide2.style.display = "flex";
-          }
-        }
-      })
-    }
-      handleState(1, s2ID, [s2e1, s2e2, s2e3], slide2, 4, 5);
+
+      showElement(1, s2ID,0, [s2e1, s2e2, s2e3, s2e4, s2e5, s2e6, s2e7], slide2, 12, 5);
+      hideElement([ s2e2, s2e3, s2e4, s2e5, s2e6, s2e7], s2ID,8)
+      showElement(1, s2ID,7, [s2e8, s2e9, s2e10, s2e11], slide2, 12, 5);
 
     }
     if(szamlalo == 6){
@@ -516,7 +584,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x: 0,
         y: -0.5,
         z: 0,
-        duration:2,
+        duration:1.5,
         ease:"power3.inOut",
         onUpdate: () => {
           controls.update();
@@ -526,67 +594,87 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x:  -2.7208663238764426,
         y:  3.5715675943095553,
         z:  -3.3553718493391766 ,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      });
-    }
-
-  //----------E4----------------------
-    if(szamlalo == 7){
-      gsap.to(controls.target,{
-        x: -1.7,
-        y: -1.3,
-        z: 0,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      })
-      gsap.to(camera.position,{
-        x:  2.8241763521025396,
-        y:  4.213878713023659,
-        z:  -2.9589759157800244,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      });
-    }
-    if(szamlalo == 8){
-      if(states[2].isVisible == false){
-      gsap.to(controls.target,{
-        x: -1.7,
-        y: -1.3,
-        z: 0,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      })
-      gsap.to(camera.position,{
-        x:  -0.3234944350191573,
-        y:  0.33117320083189483,
-        z:  -0.9146795246292132,
-        duration:2,
+        duration:1.5,
         ease:"power3.inOut",
         onUpdate: () => {
           controls.update();
         },
+        //----------E4----------------------
         onComplete: function(){
-          states[2].isVisible = true;
-          if(slide3 != null){
-            slide3.style.display = "flex";
-          }
-        }
-      });
+          szamlalo++;
+          gsap.to(controls.target,{
+            x: -1.7,
+            y: -1.3,
+            z: 0,
+            duration:1.5,
+            ease:"power3.inOut",
+            onUpdate: () => {
+              controls.update();
+            }
+          })
+          gsap.to(camera.position,{
+            x:  2.8241763521025396,
+            y:  4.213878713023659,
+            z:  -2.9589759157800244,
+            duration:1.5,
+            ease:"power3.inOut",
+            onUpdate: () => {
+              controls.update();
+            },
+            onComplete: function(){
+              szamlalo++;
+              if(states[2].isVisible == false){
+                gsap.to(controls.target,{
+                  x: -1.7,
+                  y: -1.3,
+                  z: 0,
+                  duration:1.5,
+                  ease:"power3.inOut",
+                  onUpdate: () => {
+                    controls.update();
+                  }
+                })
+                gsap.to(camera.position,{
+                  x:  -0.3234944350191573,
+                  y:  0.33117320083189483,
+                  z:  -0.9146795246292132,
+                  duration:1.5,
+                  ease:"power3.inOut",
+                  onUpdate: () => {
+                    controls.update();
+                  },
+                  onComplete: function(){
+                    states[2].isVisible = true;
+                    if(slide3 != null && s3e1){
+                      slide3.style.display = "flex";
+                      s3e1.style.display = "block";
+                      s3ID++;
+
+                    }
+                  }
+                });
+              }
+            }
+          });
+            }
+        });
     }
-    handleState(2, s3ID, [s3e1, s3e2, s3e3, s3e4], slide3, 5, 8);
+
+    if(szamlalo == 7){
+
+    }
+    if(szamlalo == 8){
+
+    showElement(2, s3ID, 0,[s3e1], slide3, 7, 8);
+    showElement(2, s3ID, 1,[s3e2], slide3, 7, 8);
+    showElement(2, s3ID, 1,[s3e3], slide3, 7, 8);
+    showElement(2, s3ID, 1,[s3e4], slide3, 7, 8);
+    hideElement([s3e2,s3e3,s3e4],s3ID,3);
+    showElement(2, s3ID, 3,[s3e5], slide3, 7, 8);
+    showElement(2, s3ID, 3,[s3e6], slide3, 7, 8);
+    hideElement([s3e5,s3e6],s3ID,5);
+    showElement(2, s3ID, 5,[s3e7], slide3, 7, 8);
+    showElement(2, s3ID, 5,[s3e8], slide3, 7, 8);
 
   }
     if(szamlalo == 9){
@@ -594,7 +682,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x: -1.7,
         y: -1.3,
         z: 0,
-        duration:2,
+        duration:1.5,
         ease:"power3.inOut",
         onUpdate: () => {
           controls.update();
@@ -604,58 +692,70 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x:  2.8241763521025396,
         y:  4.213878713023659,
         z:  -2.9589759157800244,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      });
-    }
-
-  //----------F4----------------------
-    if(szamlalo == 10){
-      gsap.to(controls.target,{
-        x:-0.1,
-        y: 0.2,
-        z: -1.1,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      })
-      gsap.to(camera.position,{
-        x:  2.714197006508865,
-        y:  3.4873810620899617,
-        z:  1.4531200769952128,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      });
-    }
-    if(szamlalo == 11){
-      if(states[3].isVisible == false){
-
-      gsap.to(camera.position,{
-        x:  0.008741320518957651,
-        y:  0.3270252761227921,
-        z:  -1.0013467641947735,
-        duration:2,
+        duration:1.5,
         ease:"power3.inOut",
         onUpdate: () => {
           controls.update();
         },
+        //----------F4----------------------
         onComplete: function(){
-          states[3].isVisible = true;
-          if(slide4 != null){
-            slide4.style.display = "flex";
-          }
+          szamlalo++;
+          gsap.to(controls.target,{
+            x:-0.1,
+            y: 0.2,
+            z: -1.1,
+            duration:1.5,
+            ease:"power3.inOut",
+            onUpdate: () => {
+              controls.update();
+            }
+          })
+          gsap.to(camera.position,{
+            x:  2.714197006508865,
+            y:  3.4873810620899617,
+            z:  1.4531200769952128,
+            duration:1.5,
+            ease:"power3.inOut",
+            onUpdate: () => {
+              controls.update();
+            },
+            onComplete: function(){
+              szamlalo++;
+              if(states[3].isVisible == false){
+
+                gsap.to(camera.position,{
+                  x:  0.008741320518957651,
+                  y:  0.3270252761227921,
+                  z:  -1.0013467641947735,
+                  duration:1.5,
+                  ease:"power3.inOut",
+                  onUpdate: () => {
+                    controls.update();
+                  },
+                  onComplete: function(){
+                    states[3].isVisible = true;
+                    if(slide4 != null && s4e1){
+                      slide4.style.display = "flex";
+                      s4e1.style.display = "block";
+                      s4ID++;
+
+                    }
+                  }
+                });
+                }
+            }
+          });
         }
       });
-      }
-      handleState(3, s4ID, [s4e1, s4e2, s4e3, s4e4, s4e5], slide4, 6, 11);
+    }
+
+    if(szamlalo == 10){
+
+    }
+    if(szamlalo == 11){
+
+      showElement(3, s4ID,0, [s4e1, s4e2, s4e4, s4e5 ], slide4, 5, 11);
+      showElement(3, s4ID,1, [s4e3], slide4, 5, 11);
 
     }
 
@@ -664,69 +764,80 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x:  2.714197006508865,
         y:  3.4873810620899617,
         z:  1.4531200769952128,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      });
-    }
-
-  //----------G4----------------------
-
-    if(szamlalo == 13){
-      gsap.to(controls.target,{
-        x: 0.079,
-        y: -1,
-        z: -1.1,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      })
-      gsap.to(camera.position,{
-        x:  0.07425468103581571,
-        y:  3.445033516565238,
-        z:  0.05494225906324535,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      });
-    }
-    if(szamlalo == 14){
-      if(states[4].isVisible == false){
-
-      gsap.to(controls.target,{
-        x: 0.5,
-        y: -1.8,
-        z: -1.7,
-        duration:2,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      })
-      gsap.to(camera.position,{
-        x:  0.31605460453889844,
-        y:  0.34736189095006487,
-        z:  -0.952149960172205,
-        duration:2,
+        duration:1.5,
         ease:"power3.inOut",
         onUpdate: () => {
           controls.update();
         },
+        //----------G4----------------------
         onComplete: function(){
-          states[4].isVisible = true;
-          if(slide5 != null){
-            slide5.style.display = "flex";
+        szamlalo++;
+        gsap.to(controls.target,{
+          x: 0.079,
+          y: -1,
+          z: -1.1,
+          duration:1.5,
+          ease:"power3.inOut",
+          onUpdate: () => {
+            controls.update();
           }
+        })
+        gsap.to(camera.position,{
+          x:  0.07425468103581571,
+          y:  3.445033516565238,
+          z:  0.05494225906324535,
+          duration:1.5,
+          ease:"power3.inOut",
+          onUpdate: () => {
+            controls.update();
+          },
+          onComplete: function(){
+            szamlalo++;
+            if(states[4].isVisible == false){
+
+              gsap.to(controls.target,{
+                x: 0.5,
+                y: -1.8,
+                z: -1.7,
+                duration:1.5,
+                ease:"power3.inOut",
+                onUpdate: () => {
+                  controls.update();
+                }
+              })
+              gsap.to(camera.position,{
+                x:  0.31605460453889844,
+                y:  0.34736189095006487,
+                z:  -0.952149960172205,
+                duration:1.5,
+                ease:"power3.inOut",
+                onUpdate: () => {
+                  controls.update();
+                },
+                onComplete: function(){
+                  states[4].isVisible = true;
+                  if(slide5 != null && s5e1){
+                    slide5.style.display = "flex";
+                    s5e1.style.display = "block";
+                    s5ID++;
+
+                  }
+                }
+              });
+            }
+          }
+        });
         }
       });
     }
-    handleState(4, s5ID, [s5e1, s5e2, s5e3, s5e4 ,s5e5, s5e6], slide5, 7, 14);
+
+
+    if(szamlalo == 13){
+
+    }
+    if(szamlalo == 14){
+
+    showElement(4, s5ID, 0,[s5e1, s5e2, s5e3, s5e4], slide5, 5, 14);
 
     }
     if(szamlalo == 15){
@@ -734,7 +845,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x: 0.079,
         y: -1,
       z: -1.1,
-      duration:2,
+      duration:1.5,
       ease:"power3.inOut",
       onUpdate: () => {
         controls.update();
@@ -744,22 +855,19 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
       x:  0.07425468103581571,
       y:  3.445033516565238,
       z:  0.05494225906324535,
-      duration:2,
+      duration:1.5,
       ease:"power3.inOut",
       onUpdate: () => {
         controls.update();
-      }
-    });
-  }
-
-  //----------A4----------------------
-
-    if(szamlalo == 16){
+      },
+      //----------A4----------------------
+      onComplete: function(){
+      szamlalo++;
       gsap.to(controls.target,{
         x: 1.5,
         y: -1.9,
         z: -2.8,
-        duration:2,
+        duration:1.5,
         ease:"power3.inOut",
         onUpdate: () => {
           controls.update();
@@ -769,52 +877,66 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x:  -0.29352325721453004,
         y:  3.090695881588399,
         z:  1.4103057688090246,
-        duration:2,
+        duration:1.5,
         ease:"power3.inOut",
         onUpdate: () => {
           controls.update();
+        },
+        onComplete: function(){
+szamlalo++;
+if(states[5].isVisible == false){
+
+  gsap.to(controls.target,{
+     x: 1.5,
+     y: -1.9,
+      z: -2.8,
+     duration:1.5,
+     ease:"power3.inOut",
+     onUpdate: () => {
+       controls.update();
+      }
+  })
+   gsap.to(camera.position,{
+     x:  0.6860357638651691,
+     y:  0.34214272826027714,
+     z:  -0.8688987101401513 ,
+     duration:1.5,
+     ease:"power3.inOut",
+     onUpdate: () => {
+       controls.update();
+      },
+      onComplete: function(){
+        states[5].isVisible = true;
+        if(slide6 != null && s6e1){
+          slide6.style.display = "flex";
+          s6e1.style.display = "block";
+          s6ID++;
+
+        }
+      }
+    });
+  }
         }
        });
-     }
+      }
+    });
+  }
+
+
      if(szamlalo == 17){
-      if(states[5].isVisible == false){
 
-      gsap.to(controls.target,{
-         x: 1.5,
-         y: -1.9,
-          z: -2.8,
-         duration:2,
-         ease:"power3.inOut",
-         onUpdate: () => {
-           controls.update();
-          }
-      })
-       gsap.to(camera.position,{
-         x:  0.6860357638651691,
-         y:  0.34214272826027714,
-         z:  -0.8688987101401513 ,
-         duration:2,
-         ease:"power3.inOut",
-         onUpdate: () => {
-           controls.update();
-          },
-          onComplete: function(){
-            states[5].isVisible = true;
-            if(slide6 != null){
-              slide6.style.display = "flex";
-            }
-          }
-        });
-      }
-      handleState(5, s6ID, [s6e1, s6e2, s6e3, s6e4, s6e5, s6e6, s6e7], slide6, 8, 17);
+      showElement(5, s6ID,0, [s6e1, s6e2, s6e3, s6e4, s6e5, s6e6, s6e7,s6e8,s6e9], slide6, 10, 17);
+      hideElement([s6e1,s6e2],s6ID,3)
 
       }
+
+
      if(szamlalo == 18){
       gsap.to(controls.target,{
         x: 1.5,
         y: -1.9,
         z: -2.8,
-        duration:2,
+        duration:1.5,
         ease:"power3.inOut",
         onUpdate: () => {
           controls.update();
@@ -824,70 +946,79 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
              x:  -0.29352325721453004,
              y:  3.090695881588399,
              z:  1.4103057688090246,
-             duration:2,
+             duration:1.5,
              ease:"power3.inOut",
              onUpdate: () => {
                controls.update();
-             }
+              },
+              //----------B4----------------------
+              onComplete: function(){
+             szamlalo++;
+             gsap.to(controls.target,{
+              x: 5.4,
+              y: -5.5,
+              z: -2,
+              duration:1.5,
+              ease:"power3.inOut",
+              onUpdate: () => {
+                controls.update();
+               }
+             })
+          gsap.to(camera.position,{
+            x:  -2.08284219605392,
+            y:  4.168395903617315,
+            z:  0.22332959961178578,
+            duration:1.5,
+            ease:"power3.inOut",
+            onUpdate: () => {
+              controls.update();
+            },
+            onComplete:function(){
+              szamlalo++;
+              if(states[6].isVisible == false){
+
+                gsap.to(controls.target,{
+                  x: 5.4,
+                  y: -5.5,
+                  z: -2,
+                  duration:1.5,
+                  ease:"power3.inOut",
+                  onUpdate: () => {
+                    controls.update();
+                   }
+                 })
+                 gsap.to(camera.position,{
+                   x:  0.8109277209603922,
+                   y:  0.3414749271048718,
+                   z:  -0.6500999023238023,
+                   duration:1.5,
+                   ease:"power3.inOut",
+                   onUpdate: () => {
+                     controls.update();
+                    },
+                    onComplete: function(){
+                      states[6].isVisible = true;
+                      if(slide7 != null && s7e1){
+                        slide7.style.display = "flex";
+                        s7e1.style.display = "block";
+                        s7ID++;
+
+                      }
+                    }
+                   });
+                   }
+            }
+          });
+            }
            });
          }
 
-  //----------B4----------------------
 
-   if(szamlalo == 19){
-     gsap.to(controls.target,{
-       x: 5.4,
-       y: -5.5,
-       z: -2,
-       duration:2,
-       ease:"power3.inOut",
-       onUpdate: () => {
-         controls.update();
-        }
-      })
-   gsap.to(camera.position,{
-     x:  -2.08284219605392,
-     y:  4.168395903617315,
-     z:  0.22332959961178578,
-     duration:2,
-     ease:"power3.inOut",
-     onUpdate: () => {
-       controls.update();
-     }
-   });
-
-     }
    if(szamlalo == 20){
-    if(states[6].isVisible == false){
 
-    gsap.to(controls.target,{
-      x: 5.4,
-      y: -5.5,
-      z: -2,
-      duration:2,
-      ease:"power3.inOut",
-      onUpdate: () => {
-        controls.update();
-       }
-     })
-     gsap.to(camera.position,{
-       x:  0.8109277209603922,
-       y:  0.3414749271048718,
-       z:  -0.6500999023238023,
-       duration:2,
-       ease:"power3.inOut",
-       onUpdate: () => {
-         controls.update();
-        },
-        onComplete: function(){
-          states[6].isVisible = true;
-          if(slide7 != null){
-            slide7.style.display = "flex";
-          }
-        }
-       });
-       }
-       handleState(6, s7ID, [s7e1, s7e2, s7e3, s7e4, s7e5, s7e6, s7e7, s7e8], slide7, 9, 20);
+       showElement(6, s7ID,0, [s7e1, s7e2, s7e3, s7e4], slide7, 5, 20);
+       showElement(6, s7ID,3, [s7e5], slide7, 5, 20);
+       showElement(6, s7ID,3, [s7e6], slide7, 5, 20);
 
       }
     if(szamlalo == 21){
@@ -895,7 +1026,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x: 5.4,
         y: -5.5,
         z: -2,
-        duration:2,
+        duration:1.5,
         ease:"power3.inOut",
         onUpdate: () => {
           controls.update();
@@ -905,10 +1036,68 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
          x:  -2.08284219605392,
          y:  4.168395903617315,
          z:  0.22332959961178578,
-         duration:2,
+         duration:1.5,
          ease:"power3.inOut",
          onUpdate: () => {
            controls.update();
+         },
+         onComplete:function(){
+          szamlalo++;
+          gsap.to(controls.target,{
+            x: 0.9,
+            y: -0.4,
+            z: 0.5,
+            duration:1.5,
+            ease:"power3.inOut",
+            onUpdate: () => {
+              controls.update();
+            }
+          })
+          gsap.to(camera.position,{
+            x:  1.2557474840458278,
+            y:  3.2062090471559324,
+            z:  -3.68004521967629,
+            duration:1.5,
+            ease:"power3.inOut",
+            onUpdate: () => {
+              controls.update();
+            },
+            onComplete:function(){
+              szamlalo++;
+              if(states[7].isVisible == false){
+
+                gsap.to(controls.target,{
+                  x: 0.9,
+                  y: -0.4,
+                  z: 0.5,
+                  duration:1.5,
+                  ease:"power3.inOut",
+                  onUpdate: () => {
+                    controls.update();
+                  }
+                })
+                gsap.to(camera.position,{
+                  x:  0.9709620223589394,
+                  y:  0.3193423519776942,
+                  z:  -0.33380730336832876,
+                  duration:1.5,
+                  ease:"power3.inOut",
+                  onUpdate: () => {
+                    controls.update();
+                   },
+                   onComplete: function(){
+                     states[7].isVisible = true;
+                     if(slide8 != null && s8e1){
+                      slide8.style.display = "flex";
+                      s8e1.style.display = "block";
+                      s8ID++;
+
+                    }
+                   }
+                 });
+                  }
+            }
+            });
          }
        });
       }
@@ -916,58 +1105,11 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
   //----------C5----------------------
 
   if(szamlalo == 22){
-    gsap.to(controls.target,{
-      x: 0.9,
-      y: -0.4,
-      z: 0.5,
-      duration:2,
-      ease:"power3.inOut",
-      onUpdate: () => {
-        controls.update();
-      }
-    })
-    gsap.to(camera.position,{
-      x:  1.2557474840458278,
-      y:  3.2062090471559324,
-      z:  -3.68004521967629,
-      duration:2,
-      ease:"power3.inOut",
-      onUpdate: () => {
-        controls.update();
-      }
-      });
+
     }
    if(szamlalo == 23){
-    if(states[7].isVisible == false){
 
-    gsap.to(controls.target,{
-      x: 0.9,
-      y: -0.4,
-      z: 0.5,
-      duration:2,
-      ease:"power3.inOut",
-      onUpdate: () => {
-        controls.update();
-      }
-    })
-    gsap.to(camera.position,{
-      x:  0.9709620223589394,
-      y:  0.3193423519776942,
-      z:  -0.33380730336832876,
-      duration:2,
-      ease:"power3.inOut",
-      onUpdate: () => {
-        controls.update();
-       },
-       onComplete: function(){
-         states[7].isVisible = true;
-         if(slide8 != null){
-           slide8.style.display = "flex";
-         }
-       }
-     });
-      }
-      handleState(7, s8ID, [s8e1, s8e2], slide8, 3, 23);
+      showElement(7, s8ID,0, [s8e1, s8e2], slide8, 3, 23);
 
     }
     if(szamlalo == 24){
@@ -975,7 +1117,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x: 0,
         y: 0,
         z: 0,
-        duration: 2,
+        duration:1.5,
         ease: "power3.inOut",
         onUpdate: () => {
           controls.update();
@@ -985,7 +1127,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
         x : 1.4311579052134409,
         y : 2.7686114734175713,
         z : -4.3731149087753876,
-        duration:2,
+        duration:1.5,
         onUpdate: function(){
           controls.update();
         }

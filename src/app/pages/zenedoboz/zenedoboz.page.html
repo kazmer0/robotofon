@@ -11,11 +11,10 @@
       <ul>
         <li *ngFor="let zene of zenek">
           <div id="music-player" class="rectangle">
-            <!-- album logo -->
             <div id="music-logo" class="music-logo">
               <i class="fas fa-music"></i>
             </div>
-            <!-- track length -->
+
             <div id="controls" class="controls">
               <div class="progress-container">
                 <div
@@ -26,21 +25,21 @@
                 </div>
               </div>
             </div>
-            <!-- time -->
+
             <div id="controls-time" class="controls-time">
               <div class="starts-time">{{zene.length}}</div>
               <div class="ends-time">-{{zene.remainingTime}}</div>
             </div>
-            <!-- song name -->
+
             <div id="music-name" class="music-name">{{zene.name}}</div>
-            <!-- player button and controls -->
+
             <div id="player-btn" class="player-btn">
               <button
                 *ngIf="this.zenek[zene.index].isPlaying == false "
                 (click)="playFromList(zene.index)"
               >
                 <img
-                  src="~/assets/svg/play-button-svgrepo-com.svg"
+                  src="../../assets/svg/play-button-svgrepo-com.svg"
                   alt="play button"
                 />
               </button>
@@ -49,13 +48,13 @@
                 (click)="pauseFromList(zene.index)"
               >
                 <img
-                  src="~/assets/svg/pause-button-svgrepo-com.svg"
+                  src="../../assets/svg/pause-button-svgrepo-com.svg"
                   alt="pause button"
                 />
               </button>
               <button class="rewind" (click)="rewind(zene.index)">
                 <img
-                  src="~/assets/svg/rewind-svgrepo-com.svg"
+                  src="../../assets/svg/rewind-svgrepo-com.svg"
                   alt="rewind button"
                 />
               </button>

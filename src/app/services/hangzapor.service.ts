@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { DataSender } from './system/dataSender.services';
 
 @Injectable({
-  providedIn: 'root', // Makes the service globally available
+  providedIn: 'root',
 })
 export class HangzaporService {
-  // Core game variables
+
   level = 1;
   score : number = 0;
   bpm = 60;
@@ -13,12 +13,10 @@ export class HangzaporService {
   currentIndex = 0;
   gameOver = false;
 
-  // Speed configurations
   gameSpeed = 1800;
   tileFallSpeed = 2;
 
 
-  // DOM Elements
   winInfo = document.getElementById('win');
   loseInfo = document.getElementById('lose');
   endInfo = document.getElementById('end');
@@ -63,13 +61,11 @@ export class HangzaporService {
   }
 
 
-  // Game interval reference
   gameInterval: any;
 
 
-  // Notes data
   boci: Note[] = [
-    new Note("C4",0.5,1), //piros szinu tile ay egyes oszlopban, ami egy félhang (Dó)
+    new Note("C4",0.5,1), //piros szinu tile az egyes oszlopban, ami egy félhang (Dó)
     new Note("E4",0.5,2),
     new Note("C4",0.5,1),
     new Note("E4",0.5,2),
@@ -105,8 +101,8 @@ export class HangzaporService {
     new Note("E",1,2),
     new Note("D",1,2),
 
-    new Note("C",1,1),
-    new Note("C",1,1),
+    new Note("C4",1,1),
+    new Note("C4",1,1),
     new Note("D",1,2),
     new Note("E",1,3),
 
@@ -124,34 +120,34 @@ export class HangzaporService {
     new Note("E",1,2),
     new Note("D",1,2),
 
-    new Note("C",1,1),
-    new Note("C",1,1),
+    new Note("C4",1,1),
+    new Note("C4",1,1),
     new Note("D",1,2),
     new Note("E",1,3),
 
     new Note("D",1,2),
-    new Note("C",0.8,1),
-    new Note("C",2,1),
+    new Note("C4",0.8,1),
+    new Note("C4",2,1),
 
 
 
     new Note("D",1,2),
     new Note("D",1,2),
     new Note("E",1,3),
-    new Note("C",1,1),
+    new Note("C4",1,1),
 
     new Note("D",1,2),
     new Note("E",0.5,3),
     new Note("F",0.5,4),
     new Note("E",1,3),
-    new Note("C",1,1),
+    new Note("C4",1,1),
 
     new Note("D",1,2),
     new Note("E",0.5,3),
     new Note("F",0.5,4),
     new Note("E",1,3),
     new Note("D",1,2),
-    new Note("C",1,1),
+    new Note("C4",1,1),
     new Note("D",1,2),
     new Note("G",2,4),
 
@@ -164,14 +160,14 @@ export class HangzaporService {
     new Note("E",1,2),
     new Note("D",1,1),
 
-    new Note("C",1,1),
-    new Note("C",1,1),
+    new Note("C4",1,1),
+    new Note("C4",1,1),
     new Note("D",1,2),
     new Note("E",1,3),
 
     new Note("D",1,2),
-    new Note("C",0.8,1),
-    new Note("C",2,1),
+    new Note("C4",0.8,1),
+    new Note("C4",2,1),
 
   ]
   szelrol : Note[] = [
@@ -269,7 +265,7 @@ export class HangzaporService {
     }
   }
 
-  // Helper function to configure levels
+
   whichLevel() {
     switch (this.level) {
       case 1:
@@ -295,7 +291,6 @@ export class HangzaporService {
     }
   }
 
-  // Function to start the game
   startGame() {
     this.hideElement(this.startButton);
     this.calculateGameSpaceHeight();
@@ -325,7 +320,6 @@ export class HangzaporService {
     createTile();
   }
 
-  // Restart the game
   restartGame() {
     this.level = 1;
     this.score = -1;
@@ -344,7 +338,6 @@ export class HangzaporService {
     this.startGame();
   }
 
-  // Progress to the next level
   nextLevel() {
     this.score++;
     this.updateScoreDisplay();
@@ -361,7 +354,6 @@ export class HangzaporService {
     this.startGame();
   }
 
-  // Check if the game is won
   isGameWon() {
     if(this.score == this.musicToPlay.length ||
        this.score == 2*this.musicToPlay.length+2 ||
@@ -381,7 +373,6 @@ export class HangzaporService {
     }
   }
 
-  // Handle game over
   isGameOver() {
     if(this.winInfoIsShown == false && this.endInfoIsShown == false){
     this.score = 0;
@@ -391,7 +382,6 @@ export class HangzaporService {
     }
   }
 
-  // Helper functions
   clearTiles() {
     this.tiles.forEach(tile => {
       if (tile.column) {
@@ -402,7 +392,7 @@ export class HangzaporService {
       }
     });
 
-    this.tiles = []; // Clear the tiles array
+    this.tiles = [];
   }
 
   updateScoreDisplay() {
@@ -423,7 +413,6 @@ export class HangzaporService {
   }
 }
 
-// Helper classes
 class Note {
   constructor(
     public key: string,

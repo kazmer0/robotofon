@@ -8,9 +8,9 @@ export class ZenedobozService {
 
   constructor(public dataSender:DataSender) { }
   musicToPlay:any;
-  private isPlaying = false; // Control flag for play/pause
-private currentTimeout: any = null; // To track the active setTimeout
-private currentIndex = 0; // To track the current note being played
+  private isPlaying = false;
+private currentTimeout: any = null;
+private currentIndex = 0;
 
   ciao_bella = [
     new Note('E',500),
@@ -38,13 +38,13 @@ private currentIndex = 0; // To track the current note being played
     new Note('D',500),
     new Note('E',500),
     new Note('F',500),
-    new Note('F',500),
     new Note('F',2000),
+    new Note('F',500),
     new Note('E',500),
     new Note('D',500),
     new Note('F',500),
-    new Note('E',500),
-    new Note('D',2000),
+    new Note('E',2000),
+    new Note('D',500),
    new Note('C4',500),
     new Note('B',1000),
     new Note('E',1000),
@@ -90,6 +90,7 @@ private currentIndex = 0; // To track the current note being played
     new Note('B',1000),
    new Note('C5',1000),
     new Note('A',2000),
+
   ]
   can_can = [
     new Note('C4',1),
@@ -253,7 +254,6 @@ private currentIndex = 0; // To track the current note being played
   }
 
   playMusic(music: string) {
-    // Select the music array based on the input
     switch (music) {
       case 'Ciao Bella':
         this.musicToPlay = this.ciao_bella;
@@ -271,15 +271,15 @@ private currentIndex = 0; // To track the current note being played
 
     console.log('adat fogadva, music: ', music);
 
-    this.isPlaying = true; // Set playing flag to true
-    this.currentIndex = 0; // Reset index to the beginning
-    this.playNextNote(); // Start playing the music
+    this.isPlaying = true;
+    this.currentIndex = 0;
+    this.playNextNote();
   }
 
   pauseMusic() {
-    this.isPlaying = false; // Set playing flag to false
+    this.isPlaying = false;
     if (this.currentTimeout) {
-      clearTimeout(this.currentTimeout); // Stop any active timeout
+      clearTimeout(this.currentTimeout);
       this.currentTimeout = null;
     }
     console.log('Music paused');
@@ -287,8 +287,8 @@ private currentIndex = 0; // To track the current note being played
 
   resumeMusic() {
     if (!this.isPlaying) {
-      this.isPlaying = true; // Resume playing
-      this.playNextNote(); // Continue from where it was paused
+      this.isPlaying = true;
+      this.playNextNote();
       console.log('Music resumed');
     }
   }
@@ -299,17 +299,16 @@ private currentIndex = 0; // To track the current note being played
 
   private playNextNote() {
     if (this.currentIndex < this.musicToPlay.length && this.isPlaying) {
-      // Send the current note to the ESP32
       this.sendNote(this.musicToPlay[this.currentIndex].key);
 
-      // Schedule the next note after the current note's duration
+
       this.currentTimeout = setTimeout(() => {
-        this.currentIndex++; // Move to the next note
-        this.playNextNote(); // Recursively call for the next note
+        this.currentIndex++;
+        this.playNextNote();
       }, this.musicToPlay[this.currentIndex].duration);
     } else if (this.currentIndex >= this.musicToPlay.length) {
       console.log('Finished playing the music.');
-      this.isPlaying = false; // Stop playing when done
+      this.isPlaying = false;
     }
   }
 

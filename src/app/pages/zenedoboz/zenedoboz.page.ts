@@ -51,7 +51,7 @@ export class ZenedobozPage implements OnInit {
       intervalId = setInterval(() => {
         if (seconds > 0) {
           seconds -= 1;
-          console.log(seconds);
+          //console.log(seconds);
           this.zenek[index].remainingTime = seconds;
         } else {
           clearInterval(intervalId);

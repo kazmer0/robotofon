@@ -61,8 +61,23 @@ body {
 			border-radius: 50%;
 			margin-bottom: 40px;
 			border: 3px solid #fff;
-			padding: 4px;
 		}
+    #boci-image{
+      width: 100px;
+      height: 100px;
+      background: url('../../../assets/images/StockSnap_ABNB8II45O.jpg') round;
+    }
+    #oromoda-image{
+      width: 100px;
+      height: 100px;
+      background: url('../../../assets/images/beethoven.png') round;
+    }
+    #szelrol-image{
+      width: 100px;
+      height: 100px;
+      background: url('../../../assets/images/pexels-jesus-esteban-san-jose-11194232-30415571.jpg') round;
+
+    }
 		.user-profession {
 			font-size: 1.15rem;
 			color: $color_2;

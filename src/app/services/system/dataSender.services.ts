@@ -8,12 +8,12 @@ import { Injectable } from '@angular/core';
 export class DataSender {
   constructor(private bluetoothService:BluetoothService) { }
 
-  devMode = false;
+  devMode = true;
 
   async  C4_hang(){
     if(this.devMode == false){
      if (this.bluetoothService.isDeviceConnected() == false) {
-         alert("Please connect to the ESP32 first.");
+         alert("Először csatlakozzon a Robotofonhoz.");
          return;
        }
       }
@@ -28,7 +28,7 @@ export class DataSender {
   async  D_hang(){
     if(this.devMode == false){
     if (this.bluetoothService.isDeviceConnected() == false) {
-      alert("Please connect to the ESP32 first.");
+      alert("Először csatlakozzon a Robotofonhoz.");
       return;
     }
     }
@@ -42,7 +42,7 @@ export class DataSender {
   async E_hang(){
     if(this.devMode == false){
     if (this.bluetoothService.isDeviceConnected() == false) {
-      alert("Please connect to the ESP32 first.");
+      alert("Először csatlakozzon a Robotofonhoz.");
       return;
     }
     }
@@ -56,8 +56,8 @@ export class DataSender {
   async F_hang(){
     if(this.devMode == false){
     if (this.bluetoothService.isDeviceConnected() == false) {
-         alert("Please connect to the ESP32 first.");
-         return;
+      alert("Először csatlakozzon a Robotofonhoz.");
+      return;
        }
        }
        const dataF = new TextEncoder().encode("F");
@@ -70,7 +70,7 @@ export class DataSender {
   async G_hang(){
     if(this.devMode == false){
     if (this.bluetoothService.isDeviceConnected() == false) {
-      alert("Please connect to the ESP32 first.");
+      alert("Először csatlakozzon a Robotofonhoz.");
       return;
     }
     }
@@ -84,8 +84,8 @@ export class DataSender {
   async  A_hang(){
     if(this.devMode == false){
     if (this.bluetoothService.isDeviceConnected() == false) {
-         alert("Please connect to the ESP32 first.");
-         return;
+      alert("Először csatlakozzon a Robotofonhoz.");
+      return;
        }
        }
        const dataA = new TextEncoder().encode("A");
@@ -98,7 +98,7 @@ export class DataSender {
   async B_hang(){
     if(this.devMode == false){
     if (this.bluetoothService.isDeviceConnected() == false) {
-      alert("Please connect to the ESP32 first.");
+      alert("Először csatlakozzon a Robotofonhoz.");
       return;
     }
     }
@@ -112,7 +112,7 @@ export class DataSender {
   async C5_hang(){
     if(this.devMode == false){
     if (this.bluetoothService.isDeviceConnected() == false) {
-      alert("Please connect to the ESP32 first.");
+      alert("Először csatlakozzon a Robotofonhoz.");
       return;
     }
     }
@@ -122,13 +122,16 @@ export class DataSender {
   }
     console.log("Servo moved to C5.");
   }
+
+
+
   async sendHighFrequencyData() {
     for (let i = 0; i < 100; i++) {
       if(this.bluetoothService.bluetoothWriter != null ){
       await this.bluetoothService.bluetoothWriter.writeValue(new TextEncoder().encode(`${i}`));
-      // Test with minimal delay
+
       await new Promise((resolve) => setTimeout(resolve, 2));
-      } // 10ms
+      }
     }
   }
 }

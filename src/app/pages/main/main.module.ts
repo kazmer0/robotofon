@@ -8,6 +8,7 @@ import {MainPageRoutingModule} from './main-routing.module';
 import {MainPage} from './main.page';
 import { NavigationBarComponent } from "../../../components/navigation-bar/navigation-bar.component";
 import { ConnectButtonComponent } from "../../../components/connect-button/connect-button.component";
+import { HeaderComponent } from '../../../components/header/header.component';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import { ConnectButtonComponent } from "../../../components/connect-button/conne
     FormsModule,
     MainPageRoutingModule,
     NavigationBarComponent,
-    ConnectButtonComponent
+    ConnectButtonComponent,
+    HeaderComponent
 ],
     declarations: [MainPage],
 })

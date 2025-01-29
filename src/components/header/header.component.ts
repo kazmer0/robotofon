@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
+import { ConnectButtonComponent } from "../connect-button/connect-button.component";
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss'],
+  standalone:true,
+  imports: [ConnectButtonComponent],
 })
 export class HeaderComponent {
+  isMenuOpen = false;
 
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 }
