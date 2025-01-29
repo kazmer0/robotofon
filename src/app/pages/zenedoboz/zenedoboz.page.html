@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <app-navigation-bar></app-navigation-bar>
+    <app-header></app-header>
     <div class="playerContainer">
       <ul>
         <li *ngFor="let zene of zenek">
@@ -39,7 +39,7 @@
                 (click)="playFromList(zene.index)"
               >
                 <img
-                  src="../../assets/svg/play-button-svgrepo-com.svg"
+                  src="https://raw.githubusercontent.com/kazmer0/robotofon/e8e6eae68902e22dac416fb325f2314bb80da40b/src/assets/svg/play-button-svgrepo-com.svg"
                   alt="play button"
                 />
               </button>
@@ -48,13 +48,13 @@
                 (click)="pauseFromList(zene.index)"
               >
                 <img
-                  src="../../assets/svg/pause-button-svgrepo-com.svg"
+                  src="https://raw.githubusercontent.com/kazmer0/robotofon/e8e6eae68902e22dac416fb325f2314bb80da40b/src/assets/svg/pause-button-svgrepo-com.svg"
                   alt="pause button"
                 />
               </button>
               <button class="rewind" (click)="rewind(zene.index)">
                 <img
-                  src="../../assets/svg/rewind-svgrepo-com.svg"
+                  src="https://raw.githubusercontent.com/kazmer0/robotofon/e8e6eae68902e22dac416fb325f2314bb80da40b/src/assets/svg/rewind-svgrepo-com.svg"
                   alt="rewind button"
                 />
               </button>

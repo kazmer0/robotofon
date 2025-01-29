@@ -5,6 +5,7 @@ import { ZenedobozPage } from './zenedoboz.page';
 import { ZenedobozPageRoutingModule } from './zenedoboz-routing.module';
 import { MusicPlayerComponent } from "../../../components/music-player/music-player.component";
 import { NavigationBarComponent } from "../../../components/navigation-bar/navigation-bar.component";
+import { HeaderComponent } from "../../../components/header/header.component";
 
 
 
@@ -14,7 +15,8 @@ import { NavigationBarComponent } from "../../../components/navigation-bar/navig
     FormsModule,
     ZenedobozPageRoutingModule,
     MusicPlayerComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    HeaderComponent
 ],
     declarations: [ZenedobozPage],
 })

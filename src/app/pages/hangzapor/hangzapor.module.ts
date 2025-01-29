@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import { HangzaporPageRoutingModule } from './hangzapor-routing.module';
 import {HangzaporPage} from './hangzapor.page'
 import { NavigationBarComponent } from "../../../components/navigation-bar/navigation-bar.component";
+import { HeaderComponent } from "../../../components/header/header.component";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { NavigationBarComponent } from "../../../components/navigation-bar/navig
     CommonModule,
     FormsModule,
     HangzaporPageRoutingModule,
-    NavigationBarComponent
+    NavigationBarComponent,
+    HeaderComponent
 ],
     declarations: [HangzaporPage],
 })

@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import { TaviranyitoPageRoutingModule } from './taviranyito-routing.module';
 import { TaviranyitoPage } from './taviranyito.page';
 import { NavigationBarComponent } from "../../../components/navigation-bar/navigation-bar.component";
+import { HeaderComponent } from "../../../components/header/header.component";
 
 
 
@@ -12,7 +13,8 @@ import { NavigationBarComponent } from "../../../components/navigation-bar/navig
     CommonModule,
     FormsModule,
     TaviranyitoPageRoutingModule,
-    NavigationBarComponent
+    NavigationBarComponent,
+    HeaderComponent
 ],
     declarations: [TaviranyitoPage],
 })
