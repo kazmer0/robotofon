@@ -295,9 +295,6 @@ export class HangzaporService {
   }
 
   startGame() {
-     if(this.bluetooth.isConnected == false){
-       this.bluetooth.connectToESP32()
-     }else{
 
       this.isGameStarted = true
       this.hideElement(this.startButton);
@@ -332,7 +329,7 @@ export class HangzaporService {
         }
       };
       createTile();
-    }
+
   }
 
   restartLvl(lvl:number){
@@ -395,13 +392,13 @@ export class HangzaporService {
 
   isGameWon() {
     if(this.score == this.musicToPlay.length ||
-       this.score == 2*this.musicToPlay.length+2 ||
-       this.score == 3*this.musicToPlay.length+4) {
+       this.score == 2*this.musicToPlay.length+2
+      ) {
       this.clearTiles();
       this.showElement(this.winInfo);
       this.winInfoIsShown = true;
     }
-    if (this.score == 4*this.musicToPlay.length+6) {
+    if ( this.score == 3*this.musicToPlay.length+4) {
       this.clearTiles();
       this.tiles = [];
       this.gameOver = false;

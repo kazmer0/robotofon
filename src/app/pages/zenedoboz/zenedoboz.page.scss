@@ -186,3 +186,59 @@ ul{
 }
 }
 }
+@media screen and (orientation:portrait) {
+  body{
+    display: block;
+    background-color: black;
+    height: 2000px;
+    ul{
+      position: absolute;
+      top: 10vh;
+      li{
+        margin-bottom: 30px;
+      }
+    }
+    .rectangle{
+      position: absolute;
+      left: 0;
+    }
+  }
+
+}
+
+@media (min-width:600px) and (orientation: landscape) {
+  body{
+    display: block;
+    background-color: black;
+    height: 1100px ;
+    ul{
+      position: absolute;
+      top: 25vh;
+      li{
+        margin-bottom: 30px;
+      }
+    }
+    .rectangle{
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+@media (max-width:599px) and (orientation: landscape) {
+  body{
+    display: block;
+    background-color: black;
+    height: 2000px ;
+    ul{
+      position: absolute;
+      top: 25vh;
+      li{
+        margin-bottom: 30px;
+      }
+    }
+    .rectangle{
+      position: absolute;
+      left: 0;
+    }
+  }
+}
