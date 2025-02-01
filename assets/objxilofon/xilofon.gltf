@@ -19,7 +19,7 @@
 						1,
 						1
 					],
-					"intensity":53,
+					"intensity":50,
 					"type":"point",
 					"name":"Light"
 				}
@@ -328,8 +328,8 @@
 	"images":[
 		{
 			"mimeType":"image/jpeg",
-			"name":"vegrekeszvanaaaaaaaaaaaaa",
-			"uri":"vegrekeszvanaaaaaaaaaaaaa.jpg"
+			"name":"robotofon3",
+			"uri":"robotofon3.jpg"
 		},
 		{
 			"mimeType":"image/jpeg",
@@ -337,14 +337,9 @@
 			"uri":"servo%20texture.jpg"
 		},
 		{
-			"mimeType":"image/jpeg",
-			"name":"gggggggg",
-			"uri":"gggggggg.jpg"
-		},
-		{
-			"mimeType":"image/jpeg",
-			"name":"genyo texture",
-			"uri":"genyo%20texture.jpg"
+		"mimeType":"image/png",
+			"name":"uto texture",
+			"uri":"uto%20texture.png"
 		},
 		{
 			"mimeType":"image/png",
@@ -353,8 +348,13 @@
 		},
 		{
 			"mimeType":"image/png",
-			"name":"vegrekeszvanaaaaaaaaaaaaa",
-			"uri":"vegrekeszvanaaaaaaaaaaaaa.png"
+			"name":"uto texture",
+			"uri":"uto%20texture.png"
+		},
+		{
+			"mimeType":"image/png",
+			"name":"robotofon3",
+			"uri":"robotofon3.png"
 		}
 	],
 	"accessors":[
