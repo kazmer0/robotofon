@@ -6,19 +6,24 @@ body{
 position: relative;
 background-color: black;
 width: 100%;
-height: 100vh;
+height:100vh;
+
 }
+
 label{
     cursor: pointer;
 }
 
   .content{
     width:100% ;
-    height: 90vh;
+    height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
+  background-color: black;
+  z-index: -1;
+
 
   .xilofon_container {
     display: flex;
@@ -145,47 +150,56 @@ label{
 
 
 
+.width-display {
+  font-size: 24px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: lightgray;
+}
 
 
+@media screen and (orientation:portrait) {
 
-@media (max-width: 700px) and (orientation: portrait) {
-  .xilofon_container{
-    align-self: flex-start;
-    margin-top: 50px;
+  body{
+      transform: rotate(90deg);
+      width: 250vw;
+      height:250vw;
+      position: absolute;
 
-    .palca {
-      width: 90%;
-      height: 15px;
-    }
-    #felso_palca {
-      transform: rotate(12deg);
-      top:43%;
-    }
-    #also_palca{
-      bottom:8%;
-    }
+    .content{
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
 
-      #C4{width: 40px; height: 200px; }
-      #D{width: 40px; height: 185px; }
-      #E{width: 40px; height: 167px; }
-      #F{width: 40px; height: 155px; }
-      #G{width: 40px; height: 140px; }
-      #A{width: 40px; height: 125px; }
-      #B{width: 40px; height: 110px; }
-      #C5{width: 40px; height: 100px; }
 
-    .hangjegy{
-      margin:0.7vw;
-    }
+    .xilofon_container{
+
+        .palca{
+   width: 900px;
+        }
   }
+  }
+  }
+
 }
 
 @media (max-width:1000px) and (orientation: landscape) {
+  body{
+    width: 900px;
+    height: 250vh;
+
+  .content{
+    position: absolute;
+    top: 100svh;
+
   .xilofon_container{
-      margin-top:200px;
 
       .palca{
-        width:90%;
+ width: 900px;
       }
+}
+}
 }
 }

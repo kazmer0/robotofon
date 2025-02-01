@@ -1,11 +1,9 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { HangzaporService } from '../../app/services/hangzapor.service';
-import { ConnectButtonComponent } from "../connect-button/connect-button.component";
 
 @Component({
   selector: 'app-hangzapor-jatek',
   standalone: true,
-  imports: [ConnectButtonComponent, ],
   templateUrl: './hangzapor-jatek.component.html',
   styleUrl: './hangzapor-jatek.component.scss'
 })
@@ -37,24 +35,55 @@ export class HangzaporJatekComponent implements AfterViewInit{
     if(startButton != null){
     this.hangzaporService.setStartButton(startButton);
     }
-    gameContainer?.addEventListener('click', (event: MouseEvent) => {
-      const clickedElement = event.target as HTMLElement; // Get the clicked element
 
-      // Check if the clicked element is NOT a tile
-      if (!clickedElement.classList.contains('tile')) {
-        this.hangzaporService.isGameOver(); // Call the game over function
-      }
-    });
+    if(this.hangzaporService.isGameStarted === true){
+      gameContainer?.addEventListener('click', (event: MouseEvent) => {
+        const clickedElement = event.target as HTMLElement; // Get the clicked element
+        alert(this.hangzaporService.isGameStarted)
+        // Check if the clicked element is NOT a tile
+        if (!clickedElement.classList.contains('tile')) {
+          this.hangzaporService.isGameOver(); // Call the game over function
+        }
+      });
+
+    }
   }
   restart() {
     this.hangzaporService.restartGame();
   }
+  currentLvl=1;
+
+  restartLvl() {
+    this.hangzaporService.restartLvl(this.currentLvl);
+  }
 
   nextLevel() {
     this.hangzaporService.nextLevel();
+    this.currentLvl++
+
   }
+
+  isGameStarted=false;
   startGame(){
     this.hangzaporService.startGame();
+    this.isGameStarted = true;
+
+  let gameContainer = document.getElementById('gameContainer');
+
+  if (gameContainer) {
+    gameContainer = document.getElementById('gameContainer');
+
+    gameContainer?.addEventListener('click', (event: MouseEvent) => {
+
+      if (!this.isGameStarted) return;
+      const clickedElement = event.target as HTMLElement;
+
+      if (!clickedElement.classList.contains('tile')) {
+        this.hangzaporService.isGameOver();
+      }
+    });
   }
+  }
+
 
 }

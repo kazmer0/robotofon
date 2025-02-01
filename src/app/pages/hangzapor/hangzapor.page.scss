@@ -4,8 +4,7 @@ $color_3: #030728;
 $color_4: #4658ff;
 $font-family_1: "Montserrat", sans-serif;
 
-/* Importing Google Font - Montserrat */
-@import "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap";
+
 * {
 	margin: 0;
 	padding: 0;
@@ -106,7 +105,6 @@ body {
 	.slider-wrapper {
 		margin: 0 10px 40px;
 		.swiper-slide-button {
-			display: none;
 		}
 	}
 }

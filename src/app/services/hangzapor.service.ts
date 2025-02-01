@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DataSender } from './system/dataSender.services';
+import { BluetoothService } from './system/bluetooth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,11 +8,13 @@ import { DataSender } from './system/dataSender.services';
 export class HangzaporService {
 
   level = 1;
+  currentLvl=1;
   score : number = 0;
   bpm = 60;
   tiles: Tile[] = [];
   currentIndex = 0;
   gameOver = false;
+  isGameStarted = false;
 
   gameSpeed = 1800;
   tileFallSpeed = 2;
@@ -65,7 +68,7 @@ export class HangzaporService {
 
 
   boci: Note[] = [
-    new Note("C4",0.5,1), //piros szinu tile az egyes oszlopban, ami egy félhang (Dó)
+    new Note("C4",0.5,1),    //piros szinu tile az egyes oszlopban, ami egy félhang (Dó)
     new Note("E4",0.5,2),
     new Note("C4",0.5,1),
     new Note("E4",0.5,2),
@@ -225,7 +228,7 @@ export class HangzaporService {
     new Note("C4",1,1),
 ]
 
-  constructor( public dataSender:DataSender) {}
+  constructor( public dataSender:DataSender, public bluetooth:BluetoothService ) {}
 
   sendNote(note:string){
     switch(note){
@@ -292,36 +295,71 @@ export class HangzaporService {
   }
 
   startGame() {
-    this.hideElement(this.startButton);
-    this.calculateGameSpaceHeight();
-    this.whichLevel();
-    const createTile = () => {
-      if (this.currentIndex < this.musicToPlay.length && !this.gameOver) {
-        const note = this.musicToPlay[this.currentIndex];
-        const tile = new Tile(
-          note,
-          this.tiles,
-          this.gameSpaceHeight,
-          this.tileFallSpeed,
-          this.isGameOver.bind(this),
-          this.isGameWon.bind(this),
-          this.updateScoreDisplay.bind(this),
-          this.sendNote.bind(this),
-        );
-        tile.moveTile();
-        this.tiles.push(tile);
-        this.currentIndex++;
+     if(this.bluetooth.isConnected == false){
+       this.bluetooth.connectToESP32()
+     }else{
 
-        if (this.currentIndex < this.musicToPlay.length) {
-          this.gameInterval = setTimeout(createTile, this.gameSpeed * this.musicToPlay[this.currentIndex - 1].duration);
+      this.isGameStarted = true
+      this.hideElement(this.startButton);
+      this.calculateGameSpaceHeight();
+      this.whichLevel();
+      const createTile = () => {
+        if (this.currentIndex < this.musicToPlay.length && !this.gameOver) {
+          const note = this.musicToPlay[this.currentIndex];
+          const tile = new Tile(
+            //----Tile paramétereinek megadása-----
+
+            note,//Melyik hangjegyet képviseli
+
+            this.tiles,//A képernyőn jelenlevő Tilek tömbje
+            this.gameSpaceHeight,//Hány pixel magas a játéktér
+            this.tileFallSpeed,//Hány pixellel essen lejjebb minden ticknél
+
+            this.isGameOver.bind(this),//Klikkeléskor tesztel, hogy vége van-e a játéknak
+            this.isGameWon.bind(this),//Klikkeléskor tesztel, hogy meg lett-e nyerve a játék
+            this.updateScoreDisplay.bind(this),//+1 pont
+
+            this.sendNote.bind(this),//Elküldi az ESP32-nek az adatot
+            //------------------------------------
+          );
+          tile.moveTile();
+          this.tiles.push(tile);
+          this.currentIndex++;
+
+          if (this.currentIndex < this.musicToPlay.length) {
+            this.gameInterval = setTimeout(createTile, this.gameSpeed * this.musicToPlay[this.currentIndex - 1].duration);
+          }
         }
-      }
-    };
-    createTile();
+      };
+      createTile();
+    }
+  }
+
+  restartLvl(lvl:number){
+    this.level =lvl;
+    if(lvl == 1){
+      this.score=-1
+    }
+    if(lvl>1){
+      this.score = this.musicToPlay.length*(lvl-1)+((lvl-1));
+    }
+    this.updateScoreDisplay();
+    clearInterval(this.gameInterval);
+
+    this.currentIndex = 0;
+    this.clearTiles();
+    this.gameOver = false;
+
+    this.hideElement(this.winInfo);
+    this.winInfoIsShown = false;
+    this.hideElement(this.loseInfo);
+    this.hideElement(this.endInfo);
+    this.endInfoIsShown = false;
+    this.startGame();
   }
 
   restartGame() {
-    this.level = 1;
+    this.level =1;
     this.score = -1;
     this.updateScoreDisplay();
     clearInterval(this.gameInterval);
@@ -342,6 +380,7 @@ export class HangzaporService {
     this.score++;
     this.updateScoreDisplay();
     this.level++;
+    this.currentLvl++;
     this.currentIndex = 0;
 
     this.clearTiles();
@@ -357,14 +396,12 @@ export class HangzaporService {
   isGameWon() {
     if(this.score == this.musicToPlay.length ||
        this.score == 2*this.musicToPlay.length+2 ||
-       this.score == 3*this.musicToPlay.length+4 ||
-       this.score == 4*this.musicToPlay.length+6 ||
-       this.score == 5*this.musicToPlay.length+8) {
+       this.score == 3*this.musicToPlay.length+4) {
       this.clearTiles();
       this.showElement(this.winInfo);
       this.winInfoIsShown = true;
     }
-    if (this.score == 6*this.musicToPlay.length+10) {
+    if (this.score == 4*this.musicToPlay.length+6) {
       this.clearTiles();
       this.tiles = [];
       this.gameOver = false;

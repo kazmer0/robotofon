@@ -18,6 +18,7 @@ body{
     height: 100vh;
     margin:0;
     padding: 0;
+    background-color: black;
   }
   .slide{
     position: absolute;
@@ -98,7 +99,7 @@ body{
       left: $textLeft;
       top: 50%;
     }
-    video{
+    iframe{
       position: absolute;
       height: 70vh;
       bottom: 1vh;
@@ -109,6 +110,7 @@ body{
     }
     #s3e6{
       right: 10vw;
+      width: 50vw;
     }
     #s3e8{
       width: 60vw;
@@ -160,11 +162,6 @@ body{
       left: 0;
     }
 
-    #s6e3{
-      width: 100vw;
-      height: 50vh;
-      top: 25%;
-    }
 
   }
   #slide7{
@@ -176,6 +173,7 @@ body{
     #s7e4{top: $firstTextTop + 40vh ;}
 
     video{
+
       z-index: -1;
       width: 40vw;
       position: absolute;
@@ -194,6 +192,10 @@ body{
 #slide8{
     background-color: var(--C);
     display: none;
+
+    #s8e2{top: $firstTextTop;}
+    #s8e3{top: $firstTextTop + 20vh;}
+    #s8e4{top: $firstTextTop + 40vh;}
   }
 }
 

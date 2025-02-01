@@ -305,7 +305,7 @@ private currentIndex = 0;
       this.currentTimeout = setTimeout(() => {
         this.currentIndex++;
         this.playNextNote();
-      }, this.musicToPlay[this.currentIndex].duration);
+      }, this.musicToPlay[this.currentIndex].duration*0.8);
     } else if (this.currentIndex >= this.musicToPlay.length) {
       console.log('Finished playing the music.');
       this.isPlaying = false;

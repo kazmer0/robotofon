@@ -1,14 +1,19 @@
 $menuHeight: 55px;
-$menuBreakpoint: 768px;
+$menuBreakpoint: 800px;
 
 #my-first {
+  z-index: 5;
   ul {
+    z-index: 5;
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: #272727;
+    li{
+      z-index: 5;
+    }
   }
 
   .logotype {
