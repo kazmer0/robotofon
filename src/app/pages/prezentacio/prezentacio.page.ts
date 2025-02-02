@@ -190,6 +190,8 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     const s8e2 = document.getElementById("s8e2");
     const s8e3 = document.getElementById("s8e3");
     const s8e4 = document.getElementById("s8e4");
+    const s8e5 = document.getElementById("s8e5");
+    const s8e6 = document.getElementById("s8e6");
 
   let s1IsVisible = false;
   let s2IsVisible = false;
@@ -401,7 +403,7 @@ states[7].isVisible = false
   s7ID=0;
   s8ID=0;
 
-  var elements=[slide1,s1e1,s1e2,s1e3,slide2,s2e1,s2e2,s2e3,s2e4,s2e5,s2e6,s2e7,s2e8,s2e9,s2e10,s2e11,slide3,s3e1,s3e2,,,s3e5,,s3e7,,slide4,s4e1,s4e2,s4e3,s4e4,s4e5,slide5,s5e1,s5e2,s5e3,s5e4,s5e5,slide6,s6e1,s6e2,s6e3,slide7,s7e1,s7e2,s7e3,s7e4,,s7e6,slide8,s8e1,s8e2,s8e3,s8e4,]
+  var elements=[slide1,s1e1,s1e2,s1e3,slide2,s2e1,s2e2,s2e3,s2e4,s2e5,s2e6,s2e7,s2e8,s2e9,s2e10,s2e11,slide3,s3e1,s3e2,,,s3e5,,s3e7,,slide4,s4e1,s4e2,s4e3,s4e4,s4e5,slide5,s5e1,s5e2,s5e3,s5e4,s5e5,slide6,s6e1,s6e2,s6e3,slide7,s7e1,s7e2,s7e3,s7e4,,s7e6,slide8,s8e1,s8e2,s8e3,s8e4,s8e5,s8e6]
 
 elements.forEach(e => {
   if(e){
@@ -1889,7 +1891,9 @@ if(states[5].isVisible == false){
     }
    if(szamlalo == 23){
 
-      showElement(7, s8ID,0, [s8e1, s8e2, s8e3, s8e4], slide8, 5, 23);
+      showElement(7, s8ID,0, [s8e1, s8e2, s8e3, s8e4,s8e5,s8e6], slide8, 7, 23);
+      hideElement([s8e1,s8e2,s8e3,s8e4],s8ID,5)
+      hideElement([s8e5],s8ID,6)
 
     }
     if(szamlalo == 24){
