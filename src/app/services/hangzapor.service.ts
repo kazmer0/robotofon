@@ -337,8 +337,23 @@ export class HangzaporService {
     if(lvl == 1){
       this.score=-1
     }
-    if(lvl>1){
-      this.score = this.musicToPlay.length*(lvl-1)+((lvl-1));
+    if(lvl==2 && this.musicToPlay==this.oromoda){
+      this.score = 63;
+    }
+    if(lvl==3 && this.musicToPlay==this.oromoda){
+      this.score = 127;
+    }
+    if(lvl==2 && this.musicToPlay==this.szelrol){
+      this.score = 42;
+    }
+    if(lvl==3 && this.musicToPlay==this.szelrol){
+      this.score = 85;
+    }
+    if(lvl==2 && this.musicToPlay==this.boci){
+      this.score = 25;
+    }
+    if(lvl==3 && this.musicToPlay==this.boci){
+      this.score = 51;
     }
     this.updateScoreDisplay();
     clearInterval(this.gameInterval);
