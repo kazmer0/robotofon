@@ -163,10 +163,12 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     const s4e3 = document.getElementById("s4e3");
     const s4e4 = document.getElementById("s4e4");
     const s4e5 = document.getElementById("s4e5");
+    const s4e6 = document.getElementById("s4e6");
 
   const slide5 = document.getElementById("slide5");
     const s5e1 = document.getElementById("s5e1");
     const s5e2 = document.getElementById("s5e2");
+    const s5e2a = document.getElementById("s5e2a");
     const s5e3 = document.getElementById("s5e3");
     const s5e4 = document.getElementById("s5e4");
     const s5e5 = document.getElementById("s5e5");
@@ -189,6 +191,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     const s8e1 = document.getElementById("s8e1");
     const s8e2 = document.getElementById("s8e2");
     const s8e3 = document.getElementById("s8e3");
+    const s8e3a = document.getElementById("s8e3a");
     const s8e4 = document.getElementById("s8e4");
     const s8e5 = document.getElementById("s8e5");
     const s8e6 = document.getElementById("s8e6");
@@ -312,6 +315,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
   }
 
   function showElement(
+
     stateIndex: number, //a states arrayből erre a statera vonatkozik (pl ha 0, akkor a 1es slidera)
 
     id: number,//melyik slideID-t nézze (pl s1ID, ha az első slideon kell megjeleníteni elemet )
@@ -1537,6 +1541,7 @@ console.log('minden console log (0):',
 
       showElement(3, s4ID,0, [s4e1, s4e2, s4e4, s4e5 ], slide4, 5, 11);
       showElement(3, s4ID,1, [s4e3], slide4, 5, 11);
+      showElement(3, s4ID,3, [s4e6], slide4, 5, 11);
 
     }
 
@@ -1618,8 +1623,9 @@ console.log('minden console log (0):',
     }
     if(szamlalo == 14){
 
-    showElement(4, s5ID, 0,[s5e1, s5e2, s5e3, s5e4], slide5, 5, 14);
 
+      showElement(4, s5ID, 0,[s5e1, s5e2, s5e3, s5e4], slide5, 5, 14);
+      showElement(4, s5ID, 1,[s5e2a], slide5, 5, 14);
     }
     if(szamlalo == 15){
       gsap.to(controls.target,{
@@ -1892,7 +1898,8 @@ if(states[5].isVisible == false){
    if(szamlalo == 23){
 
       showElement(7, s8ID,0, [s8e1, s8e2, s8e3, s8e4,s8e5,s8e6], slide8, 7, 23);
-      hideElement([s8e1,s8e2,s8e3,s8e4],s8ID,5)
+      showElement(7, s8ID, 2, [s8e3a],slide8,7,23)
+      hideElement([s8e1,s8e2,s8e3,s8e3a,s8e4],s8ID,5)
       hideElement([s8e5],s8ID,6)
 
     }
