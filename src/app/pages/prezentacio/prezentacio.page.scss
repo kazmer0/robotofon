@@ -61,8 +61,10 @@ body{
     }
     #s1e3{
       position: absolute;
-      left: $textLeft;
-      top: 60vh
+      width: 99vw;
+      height: 99vh;
+      top: 1vh;
+      left:0.5vw;
     }
   }
 
@@ -80,12 +82,29 @@ body{
     }
     #s2e3{top: $firstTextTop + 5vh; left: $textLeft + 2.5vw;}
     #s2e4{top: $firstTextTop + 15vh;left: $textLeft + 5vw; }
+    #s2e4a{
+      display: none;
+      position: absolute;
+      top: 53vh;
+      right: 40vw;
+      width: 20vw; }
     #s2e5{top: $firstTextTop + 25vh;left: $textLeft + 5vw; }
+    #s2e5a{
+      display: none;
+      position: absolute;
+      top: 63vh;
+      right: 6vw;
+      width: 30vw; }
     #s2e6{top: $firstTextTop + 35vh;left: $textLeft + 5vw; }
     #s2e7{top: $firstTextTop + 45vh;left: $textLeft + 5vw; }
 
     #s2e9{top: $firstTextTop + 10vh; left: $textLeft + 2.5vw;}
     #s2e10{top: $firstTextTop + 25vh; left: $textLeft + 2.5vw;}
+    #s2e10a{ display: none;
+      position: absolute;
+      top: 35vh;
+      right: 10vw;
+      width: 35vw;}
     #s2e11{top: $firstTextTop + 40vh; left: $textLeft + 2.5vw;}
   }
 
@@ -155,6 +174,11 @@ body{
       width: 35vw;
     }
     #s5e3{top:$firstTextTop + 20vh ;}
+    #s5e3a{display: none;
+      position: absolute;
+      top: 35vh;
+      right: 10vw;
+      width: 35vw; }
     #s5e4{top:$firstTextTop + 40vh ;}
 
   }
@@ -203,7 +227,7 @@ body{
     }
 
   }
-#slide8{
+  #slide8{
     background-color: var(--C);
     display: none;
 

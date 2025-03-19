@@ -138,12 +138,15 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     const s2e2 = document.getElementById("s2e2");
     const s2e3 = document.getElementById("s2e3");
     const s2e4 = document.getElementById("s2e4");
+    const s2e4a = document.getElementById("s2e4a");
     const s2e5 = document.getElementById("s2e5");
+    const s2e5a = document.getElementById("s2e5a");
     const s2e6 = document.getElementById("s2e6");
     const s2e7 = document.getElementById("s2e7");
     const s2e8 = document.getElementById("s2e8");
     const s2e9 = document.getElementById("s2e9");
     const s2e10 = document.getElementById("s2e10");
+    const s2e10a = document.getElementById("s2e10a");
     const s2e11 = document.getElementById("s2e11");
 
 
@@ -170,6 +173,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     const s5e2 = document.getElementById("s5e2");
     const s5e2a = document.getElementById("s5e2a");
     const s5e3 = document.getElementById("s5e3");
+    const s5e3a = document.getElementById("s5e3a");
     const s5e4 = document.getElementById("s5e4");
     const s5e5 = document.getElementById("s5e5");
 
@@ -1360,8 +1364,10 @@ console.log('minden console log (0):',
     if(szamlalo == 5){
 
       showElement(1, s2ID,0, [s2e1, s2e2, s2e3, s2e4, s2e5, s2e6, s2e7], slide2, 12, 5);
-      hideElement([ s2e2, s2e3, s2e4, s2e5, s2e6, s2e7], s2ID,8)
+      showElement(1,s2ID,3,[s2e4a,s2e5a],slide2,12,5)
+      hideElement([ s2e2, s2e3, s2e4,s2e4a, s2e5,s2e5a, s2e6, s2e7], s2ID,8)
       showElement(1, s2ID,7, [s2e8, s2e9, s2e10, s2e11], slide2, 12, 5);
+      showElement(1,s2ID,9,[s2e10a],slide2,12,5)
 
     }
     if(szamlalo == 6){
@@ -1625,7 +1631,8 @@ console.log('minden console log (0):',
 
 
       showElement(4, s5ID, 0,[s5e1, s5e2, s5e3, s5e4], slide5, 5, 14);
-      showElement(4, s5ID, 1,[s5e2a], slide5, 5, 14);
+      showElement(4, s5ID, 1,[s5e2a,s5e3a], slide5, 5, 14);
+      hideElement([s5e2a],s5ID,3)
     }
     if(szamlalo == 15){
       gsap.to(controls.target,{
