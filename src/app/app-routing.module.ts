@@ -1,8 +1,5 @@
-import { HangzaporPage } from './pages/hangzapor/hangzapor.page';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BociComponent } from './pages/hangzapor/boci/boci.component';
-
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -25,6 +22,10 @@ const routes: Routes = [
 {
   path: 'zenedoboz',
   loadChildren: () => import('./pages/zenedoboz/zenedoboz.module').then(m => m.ZenedobozPageModule)
+},
+{
+  path: 'fejlesztesek',
+  loadChildren: () => import('./pages/fejlesztesek/fejlesztesek.module').then(m => m.FejlesztesekPageModule)
 },
 ];
 

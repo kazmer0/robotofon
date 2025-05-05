@@ -240,25 +240,25 @@ document.addEventListener('keydown', (event) => {
         this.play_C4();
         break;
         case"S": case"s":
-        this.play_D;
+        this.play_D();
         break;
         case"D": case"d":
-        this.play_E;
+        this.play_E();
         break;
         case"F": case"f":
-        this.play_F;
+        this.play_F();
         break;
         case"G": case"g":
-        this.play_G;
+        this.play_G();
         break;
         case"H": case"h":
-        this.play_A;
+        this.play_A();
         break;
         case"J": case"j":
-        this.play_B;
+        this.play_B();
         break;
         case"K": case"k":
-        this.play_C5;
+        this.play_C5();
         break;
         default:
         break;

@@ -13,14 +13,16 @@ export class ConnectButtonComponent {
   async connect() {
     try {
       await this.bluetoothService.connectToESP32();
-      alert('Connected to ESP32');
+      if(this.bluetoothService.isDeviceConnected()){
+        alert('Connected to ESP32');
+      }
     } catch (error) {
     }
   }
   async connectToESP32() {
 
     let bluetoothDevice = await (navigator as any).bluetooth.requestDevice({
-      acceptAllDevices: true,
+      acceptAllDevices: false,
       optionalServices: ['4fafc201-1fb5-459e-8fcc-c5c9c331914b'],
     });
 
@@ -28,7 +30,7 @@ export class ConnectButtonComponent {
     try {
 
       bluetoothDevice = await navigator.bluetooth.requestDevice({
-        acceptAllDevices: true,
+        acceptAllDevices: false,
         optionalServices: ['4fafc201-1fb5-459e-8fcc-c5c9c331914b'],
       });
 
