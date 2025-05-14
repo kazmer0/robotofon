@@ -75,8 +75,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
   const bakedTexture = textureLoader.load('/assets/objxilofon/vegrekeszvan.png')
   */
     //Instantiate a new renderer and set its size
-    const renderer = new THREE.WebGLRenderer({ alpha: true,antialias:false,   powerPreference: "high-performance"
-    }); //Alpha: true allows for the transparent background
+    const renderer = new THREE.WebGLRenderer({ alpha: true,antialias:true , powerPreference: "high-performance"}); //Alpha: true allows for the transparent background
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -103,8 +102,8 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
   controls.target.set(0,0,0);
 
     //Add lights to the scene, so we can actually see the 3D model
-    const topLight = new THREE.DirectionalLight(0xffffff, 4 ); // (color, intensity)
-    topLight.position.set(1000, 1000, 100) //top-left-ish
+    const topLight = new THREE.DirectionalLight(0xffffff, 5); // (color, intensity)
+    topLight.position.set(500, 500, 500) //top-left-ish
     topLight.castShadow = true;
     scene.add(topLight);
 
@@ -124,10 +123,10 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
       //console.log("camera looks at: x:",Math.round(cameraX*10)/10,",","y:",Math.round(cameraY*10)/10,",","z:",Math.round(cameraZ*10)/10,",")
     }
 
-
   var szamlalo=0;
   const szamlaloID=document.getElementById("szamlaloID");
   const slide1ID=document.getElementById("slide1ID");
+
 
   const s0e1 = document.getElementById("s0e1");
   const s0e2 = document.getElementById("s0e2");
@@ -185,8 +184,6 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     const s6e1 = document.getElementById("s6e1");
     const s6e2 = document.getElementById("s6e2");
     const s6e3 = document.getElementById("s6e3");
-    const s6e4 = document.getElementById("s6e4");
-    const s6e4a = document.getElementById("s6e4a");
 
 
   const slide7 = document.getElementById("slide7");
@@ -204,7 +201,6 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     const s8e3a = document.getElementById("s8e3a");
     const s8e4 = document.getElementById("s8e4");
     const s8e5 = document.getElementById("s8e5");
-    const s8e5a = document.getElementById("s8e5a");
     const s8e6 = document.getElementById("s8e6");
 
   let s1IsVisible = false;
@@ -506,19 +502,8 @@ console.log('minden console log (0):',
           "z: ",camera.position.z, ',',
         )
          break;*/
-
-      case 33:
-        elore();
-        break;
       case 39:
         elore();
-        break;
-      case 34:
-        if(szamlalo === 3){
-          s1ID = 2;
-        }
-        hatra();
-        updatecounters();
         break;
       case 37:
         if(szamlalo === 3){
@@ -1241,7 +1226,6 @@ console.log('minden console log (0):',
     }
 
     hideElement([s0e1,s0e2],szamlalo,1)
-
   //----------C4----------------------
 
     if (szamlalo === 1) {
@@ -1383,11 +1367,11 @@ console.log('minden console log (0):',
     }
     if(szamlalo == 5){
 
-      showElement(1, s2ID,0, [s2e1, s2e2, s2e3, s2e4, s2e5, s2e6, s2e7], slide2, 4, 5);
-      showElement(1,s2ID,1,[s2e4a],slide2,12,5)
+      showElement(1, s2ID,0, [s2e1, s2e2, s2e3, s2e4, s2e5, s2e6, s2e7], slide2, 12, 5);
+      showElement(1,s2ID,3,[s2e4a,s2e5a],slide2,12,5)
       hideElement([ s2e2, s2e3, s2e4,s2e4a, s2e5,s2e5a, s2e6, s2e7], s2ID,8)
       showElement(1, s2ID,7, [s2e8, s2e9, s2e10, s2e11], slide2, 12, 5);
-      showElement(1,s2ID,9,[s2e10a],slide2,4,5)
+      showElement(1,s2ID,9,[s2e10a],slide2,12,5)
 
     }
     if(szamlalo == 6){
@@ -1476,18 +1460,16 @@ console.log('minden console log (0):',
     }
     if(szamlalo == 8){
 
-    showElement(2, s3ID, 0,[s3e1,s3e2,s3e5,s3e7], slide3, 4, 8);
-    showElement(2, s3ID, 2,[s3e3], slide3, 5, 8);
-
-    // showElement(2, s3ID, 1,[s3e2], slide3, 7, 8);
-    // showElement(2, s3ID, 1,[s3e3], slide3, 7, 8);
-    // showElement(2, s3ID, 1,[s3e4], slide3, 7, 8);
-    // hideElement([s3e2,s3e3,s3e4],s3ID,3);
-    // showElement(2, s3ID, 3,[s3e5], slide3, 7, 8);
-    // showElement(2, s3ID, 3,[s3e6], slide3, 7, 8);
-    // hideElement([s3e5,s3e6],s3ID,5);
-    // showElement(2, s3ID, 5,[s3e7], slide3, 7, 8);
-    // showElement(2, s3ID, 5,[s3e8], slide3, 7, 8);
+    showElement(2, s3ID, 0,[s3e1], slide3, 7, 8);
+    showElement(2, s3ID, 1,[s3e2], slide3, 7, 8);
+    showElement(2, s3ID, 1,[s3e3], slide3, 7, 8);
+    showElement(2, s3ID, 1,[s3e4], slide3, 7, 8);
+    hideElement([s3e2,s3e3,s3e4],s3ID,3);
+    showElement(2, s3ID, 3,[s3e5], slide3, 7, 8);
+    showElement(2, s3ID, 3,[s3e6], slide3, 7, 8);
+    hideElement([s3e5,s3e6],s3ID,5);
+    showElement(2, s3ID, 5,[s3e7], slide3, 7, 8);
+    showElement(2, s3ID, 5,[s3e8], slide3, 7, 8);
 
   }
     if(szamlalo == 9){
@@ -1567,8 +1549,9 @@ console.log('minden console log (0):',
     }
     if(szamlalo == 11){
 
-      showElement(3, s4ID,0, [s4e1, s4e2, s4e4, s4e5,s4e6 ], slide4, 6, 11);
-
+      showElement(3, s4ID,0, [s4e1, s4e2, s4e4, s4e5 ], slide4, 5, 11);
+      showElement(3, s4ID,1, [s4e3], slide4, 5, 11);
+      showElement(3, s4ID,3, [s4e6], slide4, 5, 11);
 
     }
 
@@ -1740,8 +1723,7 @@ if(states[5].isVisible == false){
 
      if(szamlalo == 17){
 
-      showElement(5, s6ID,0, [s6e1, s6e2, s6e3,s6e4], slide6, 5, 17);
-      showElement(5, s6ID,3, [s6e4a], slide6, 5, 17);
+      showElement(5, s6ID,0, [s6e1, s6e2, s6e3], slide6, 4, 17);
 
 
       }
@@ -1833,7 +1815,7 @@ if(states[5].isVisible == false){
    if(szamlalo == 20){
 
        showElement(6, s7ID,0, [s7e1, s7e2, s7e3, s7e4], slide7, 5, 20);
-       showElement(6, s7ID,1, [s7e5], slide7, 5, 20);
+       showElement(6, s7ID,3, [s7e5], slide7, 5, 20);
        showElement(6, s7ID,3, [s7e6], slide7, 5, 20);
 
       }
@@ -1926,10 +1908,10 @@ if(states[5].isVisible == false){
     }
    if(szamlalo == 23){
 
-      showElement(7, s8ID,0, [s8e1, s8e2, s8e4,s8e5,s8e6], slide8, 6, 23);
-      showElement(7, s8ID,3, [s8e5a], slide8, 6, 23);
-      hideElement([s8e1,s8e2,s8e3,s8e3a,s8e4],s8ID,4)
-      hideElement([s8e5, s8e5a],s8ID,5)
+      showElement(7, s8ID,0, [s8e1, s8e2, s8e3, s8e4,s8e5,s8e6], slide8, 7, 23);
+      showElement(7, s8ID, 2, [s8e3a],slide8,7,23)
+      hideElement([s8e1,s8e2,s8e3,s8e3a,s8e4],s8ID,5)
+      hideElement([s8e5],s8ID,6)
 
     }
     if(szamlalo == 24){

@@ -158,11 +158,11 @@ private currentIndex = 0;
     new Note('F',2000),
     new Note('C4',500),
     new Note('C4',500),
-    new Note('C5',1000),
+    new Note('C5',1200),
     new Note('A',1000),
     new Note('F',1000),
     new Note('E',1000),
-    new Note('D',2000),
+    new Note('D',1700),
     new Note('C5',500),
     new Note('C5',500),
     new Note('A',1000),
@@ -274,6 +274,8 @@ private currentIndex = 0;
     this.isPlaying = true;
     this.currentIndex = 0;
     this.playNextNote();
+    let negyzet=document.getElementById('music-logo')?.style.backgroundColor
+    negyzet='red';
   }
 
   pauseMusic() {
@@ -297,15 +299,26 @@ private currentIndex = 0;
     this.currentIndex = 0;
   }
 
+   changeColor(){
+    let negyzet=document.getElementById('music-logo')?.style.backgroundColor
+    negyzet='red';
+    switch(this.musicToPlay[this.currentIndex]){
+      case 1:
+        negyzet="blue";
+    }
+
+  }
+
   private playNextNote() {
     if (this.currentIndex < this.musicToPlay.length && this.isPlaying) {
+      document.getElementById
+      this.changeColor();
+      this.musicToPlay[this.currentIndex].
       this.sendNote(this.musicToPlay[this.currentIndex].key);
-
-
       this.currentTimeout = setTimeout(() => {
         this.currentIndex++;
         this.playNextNote();
-      }, this.musicToPlay[this.currentIndex].duration*0.8);
+      }, this.musicToPlay[this.currentIndex].duration*0.7);
     } else if (this.currentIndex >= this.musicToPlay.length) {
       console.log('Finished playing the music.');
       this.isPlaying = false;

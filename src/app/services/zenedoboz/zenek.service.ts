@@ -29,8 +29,8 @@ export class ZenekService {
       {
         index:2,
         name:'Happy birthday to you!',
-        length:21,
-        remainingTime:21,
+        length:17,
+        remainingTime:17,
         imageURL:'',
         isPlaying:false,
 
