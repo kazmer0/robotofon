@@ -75,7 +75,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
   const bakedTexture = textureLoader.load('/assets/objxilofon/vegrekeszvan.png')
   */
     //Instantiate a new renderer and set its size
-    const renderer = new THREE.WebGLRenderer({ alpha: true,antialias:true , powerPreference: "high-performance"}); //Alpha: true allows for the transparent background
+    const renderer = new THREE.WebGLRenderer({ alpha: true,antialias:false , powerPreference: "high-performance"}); //Alpha: true allows for the transparent background
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -102,8 +102,8 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
   controls.target.set(0,0,0);
 
     //Add lights to the scene, so we can actually see the 3D model
-    const topLight = new THREE.DirectionalLight(0xffffff, 5); // (color, intensity)
-    topLight.position.set(500, 500, 500) //top-left-ish
+    const topLight = new THREE.DirectionalLight(0xffffff, 4); // (color, intensity)
+    topLight.position.set(1000, 1000, 1000) //top-left-ish
     topLight.castShadow = true;
     scene.add(topLight);
 
@@ -135,6 +135,10 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     const s1e1 = document.getElementById("s1e1");
     const s1e2 = document.getElementById("s1e2");
     const s1e3 = document.getElementById("s1e3");
+    const s1e3a = document.getElementById("s1e3a");
+    const s1e3b = document.getElementById("s1e3b");
+    const s1e4 = document.getElementById("s1e4");
+    const s1e4a = document.getElementById("s1e4a");
 
   const slide2 = document.getElementById("slide2");
     const s2e1 = document.getElementById("s2e1");
@@ -174,25 +178,25 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
   const slide5 = document.getElementById("slide5");
     const s5e1 = document.getElementById("s5e1");
     const s5e2 = document.getElementById("s5e2");
-    const s5e2a = document.getElementById("s5e2a");
     const s5e3 = document.getElementById("s5e3");
-    const s5e3a = document.getElementById("s5e3a");
     const s5e4 = document.getElementById("s5e4");
     const s5e5 = document.getElementById("s5e5");
 
-  const slide6 = document.getElementById("slide6");
+    const slide6 = document.getElementById("slide6");
     const s6e1 = document.getElementById("s6e1");
     const s6e2 = document.getElementById("s6e2");
     const s6e3 = document.getElementById("s6e3");
 
 
-  const slide7 = document.getElementById("slide7");
+    const slide7 = document.getElementById("slide7");
     const s7e1 = document.getElementById("s7e1");
     const s7e2 = document.getElementById("s7e2");
     const s7e3 = document.getElementById("s7e3");
     const s7e4 = document.getElementById("s7e4");
     const s7e5 = document.getElementById("s7e5");
     const s7e6 = document.getElementById("s7e6");
+    const s7e2a = document.getElementById("s7e2a");
+    const s7e3a = document.getElementById("s7e3a");
 
   const slide8 = document.getElementById("slide8");
     const s8e1 = document.getElementById("s8e1");
@@ -201,6 +205,7 @@ export class PrezentacioPage implements OnInit, AfterViewInit {
     const s8e3a = document.getElementById("s8e3a");
     const s8e4 = document.getElementById("s8e4");
     const s8e5 = document.getElementById("s8e5");
+    const s8e5a = document.getElementById("s8e5a");
     const s8e6 = document.getElementById("s8e6");
 
   let s1IsVisible = false;
@@ -502,10 +507,20 @@ console.log('minden console log (0):',
           "z: ",camera.position.z, ',',
         )
          break;*/
+      case 33:
+        elore();
+        break;
       case 39:
         elore();
         break;
       case 37:
+        if(szamlalo === 3){
+          s1ID = 2;
+        }
+        hatra();
+        updatecounters();
+        break;
+      case 34:
         if(szamlalo === 3){
           s1ID = 2;
         }
@@ -1281,7 +1296,12 @@ console.log('minden console log (0):',
 
 
     if(szamlalo === 2){
-      showElement(0, s1ID,0, [s1e1, s1e2,s1e3], slide1, 4, 2);
+      showElement(0, s1ID,0, [s1e1, s1e2,s1e3,s1e4], slide1, 5, 2);
+      showElement(0, s1ID,2, [s1e3a], slide1, 5, 2);
+      showElement(0, s1ID,2, [s1e3b], slide1, 5, 2);
+      hideElement([s1e3a,s1e3b],s1ID,4)
+      showElement(0, s1ID,3, [s1e4a], slide1, 5, 2);
+
     }
 
     if(szamlalo == 3){
@@ -1367,11 +1387,16 @@ console.log('minden console log (0):',
     }
     if(szamlalo == 5){
 
-      showElement(1, s2ID,0, [s2e1, s2e2, s2e3, s2e4, s2e5, s2e6, s2e7], slide2, 12, 5);
-      showElement(1,s2ID,3,[s2e4a,s2e5a],slide2,12,5)
-      hideElement([ s2e2, s2e3, s2e4,s2e4a, s2e5,s2e5a, s2e6, s2e7], s2ID,8)
-      showElement(1, s2ID,7, [s2e8, s2e9, s2e10, s2e11], slide2, 12, 5);
-      showElement(1,s2ID,9,[s2e10a],slide2,12,5)
+      showElement(1, s2ID,0, [s2e1, s2e3, s2e4, s2e5, s2e6, s2e7], slide2, 7, 5);
+      showElement(1, s2ID,2, [s2e4], slide2, 7, 5);
+      showElement(1, s2ID,2, [s2e4a], slide2, 7, 5);
+      showElement(1, s2ID,2, [s2e5], slide2, 7, 5);
+      showElement(1, s2ID,2, [s2e5a], slide2, 7, 5);
+      showElement(1, s2ID,2, [s2e6], slide2, 7, 5);
+      showElement(1, s2ID,2, [s2e7], slide2, 7, 5);
+      hideElement([ s2e2, s2e3, s2e4,s2e4a, s2e5,s2e5a, s2e6, s2e7], s2ID,4)
+      showElement(1, s2ID,3, [s2e9, s2e10, s2e11], slide2, 7, 5);
+      showElement(1,s2ID,4,[s2e10a],slide2,7,5)
 
     }
     if(szamlalo == 6){
@@ -1461,16 +1486,17 @@ console.log('minden console log (0):',
     if(szamlalo == 8){
 
     showElement(2, s3ID, 0,[s3e1], slide3, 7, 8);
-    showElement(2, s3ID, 1,[s3e2], slide3, 7, 8);
-    showElement(2, s3ID, 1,[s3e3], slide3, 7, 8);
-    showElement(2, s3ID, 1,[s3e4], slide3, 7, 8);
-    hideElement([s3e2,s3e3,s3e4],s3ID,3);
-    showElement(2, s3ID, 3,[s3e5], slide3, 7, 8);
-    showElement(2, s3ID, 3,[s3e6], slide3, 7, 8);
-    hideElement([s3e5,s3e6],s3ID,5);
-    showElement(2, s3ID, 5,[s3e7], slide3, 7, 8);
-    showElement(2, s3ID, 5,[s3e8], slide3, 7, 8);
+    showElement(2, s3ID, 1,[s3e5], slide3, 7, 8);
+    showElement(2, s3ID, 1,[s3e6], slide3, 7, 8);
+    hideElement([s3e5,s3e6],s3ID,3);
 
+    showElement(2, s3ID, 3,[s3e7], slide3, 7, 8);
+    showElement(2, s3ID, 3,[s3e8], slide3, 7, 8);
+    hideElement([s3e7,s3e8],s3ID,5);
+
+    showElement(2, s3ID, 5,[s3e2], slide3, 7, 8);
+    showElement(2, s3ID, 5,[s3e3], slide3, 7, 8);
+    showElement(2, s3ID, 5,[s3e4], slide3, 7, 8);
   }
     if(szamlalo == 9){
        gsap.to(controls.target,{
@@ -1550,7 +1576,7 @@ console.log('minden console log (0):',
     if(szamlalo == 11){
 
       showElement(3, s4ID,0, [s4e1, s4e2, s4e4, s4e5 ], slide4, 5, 11);
-      showElement(3, s4ID,1, [s4e3], slide4, 5, 11);
+      showElement(3, s4ID,2, [s4e3], slide4, 5, 11);
       showElement(3, s4ID,3, [s4e6], slide4, 5, 11);
 
     }
@@ -1635,8 +1661,6 @@ console.log('minden console log (0):',
 
 
       showElement(4, s5ID, 0,[s5e1, s5e2, s5e3, s5e4], slide5, 5, 14);
-      showElement(4, s5ID, 1,[s5e2a,s5e3a], slide5, 5, 14);
-      hideElement([s5e2a],s5ID,3)
     }
     if(szamlalo == 15){
       gsap.to(controls.target,{
@@ -1660,99 +1684,99 @@ console.log('minden console log (0):',
       },
       //----------A4----------------------
       onComplete: function(){
-      szamlalo++;
-      gsap.to(controls.target,{
-        x: 1.5,
-        y: -1.9,
-        z: -2.8,
-        duration:duration,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      })
-      gsap.to(camera.position,{
-        x:  -0.29352325721453004,
-        y:  3.090695881588399,
-        z:  1.4103057688090246,
+        szamlalo++;
+        gsap.to(controls.target,{
+          x: 1.5,
+          y: -1.9,
+          z: -2.8,
+          duration:duration,
+          ease:"power3.inOut",
+          onUpdate: () => {
+            controls.update();
+          }
+        })
+        gsap.to(camera.position,{
+          x:  -0.29352325721453004,
+          y:  3.090695881588399,
+          z:  1.4103057688090246,
         duration:duration,
         ease:"power3.inOut",
         onUpdate: () => {
           controls.update();
         },
         onComplete: function(){
-szamlalo++;
-if(states[5].isVisible == false){
+          szamlalo++;
+          if(states[5].isVisible == false){
 
-  gsap.to(controls.target,{
-     x: 1.5,
-     y: -1.9,
-      z: -2.8,
-     duration:durationBeKi,
-     ease:"power3.inOut",
-     onUpdate: () => {
-       controls.update();
-      }
-  })
-   gsap.to(camera.position,{
-     x:  0.6860357638651691,
-     y:  0.34214272826027714,
-     z:  -0.8688987101401513 ,
-     duration:durationBeKi,
-     ease:"power3.inOut",
-     onUpdate: () => {
-       controls.update();
-      },
-      onComplete: function(){
-        states[5].isVisible = true;
-        if(slide6 != null && s6e1){
-          slide6.style.display = "flex";
-          s6e1.style.display = "block";
-          s6ID++;
+            gsap.to(controls.target,{
+              x: 1.5,
+              y: -1.9,
+              z: -2.8,
+              duration:durationBeKi,
+              ease:"power3.inOut",
+              onUpdate: () => {
+                controls.update();
+              }
+            })
+            gsap.to(camera.position,{
+              x:  0.6860357638651691,
+              y:  0.34214272826027714,
+              z:  -0.8688987101401513 ,
+              duration:durationBeKi,
+              ease:"power3.inOut",
+              onUpdate: () => {
+                controls.update();
+              },
+              onComplete: function(){
+                states[5].isVisible = true;
+                if(slide6 != null && s6e1){
+                  slide6.style.display = "flex";
+                  s6e1.style.display = "block";
+                  s6ID++;
 
+                }
+              }
+            });
+          }
         }
-      }
-    });
-  }
-        }
-       });
-      }
-    });
-  }
+      });
+    }
+  });
+}
 
 
      if(szamlalo == 17){
 
-      showElement(5, s6ID,0, [s6e1, s6e2, s6e3], slide6, 4, 17);
+       showElement(5, s6ID,0, [s6e1, s6e2, s6e3], slide6, 4, 17);
 
 
       }
 
 
-     if(szamlalo == 18){
-      gsap.to(controls.target,{
-        x: 1.5,
-        y: -1.9,
-        z: -2.8,
-        duration:durationBeKi,
-        ease:"power3.inOut",
-        onUpdate: () => {
-          controls.update();
-        }
-      })
-           gsap.to(camera.position,{
-             x:  -0.29352325721453004,
-             y:  3.090695881588399,
-             z:  1.4103057688090246,
-             duration:durationBeKi,
-             ease:"power3.inOut",
-             onUpdate: () => {
-               controls.update();
-              },
-              //----------B4----------------------
-              onComplete: function(){
-             szamlalo++;
-             gsap.to(controls.target,{
+      if(szamlalo == 18){
+        gsap.to(controls.target,{
+          x: 1.5,
+          y: -1.9,
+          z: -2.8,
+          duration:durationBeKi,
+          ease:"power3.inOut",
+          onUpdate: () => {
+            controls.update();
+          }
+        })
+        gsap.to(camera.position,{
+          x:  -0.29352325721453004,
+          y:  3.090695881588399,
+          z:  1.4103057688090246,
+          duration:durationBeKi,
+          ease:"power3.inOut",
+          onUpdate: () => {
+            controls.update();
+          },
+          //----------B4----------------------
+          onComplete: function(){
+            szamlalo++;
+            gsap.to(controls.target,{
               x: 5.4,
               y: -5.5,
               z: -2,
@@ -1760,39 +1784,39 @@ if(states[5].isVisible == false){
               ease:"power3.inOut",
               onUpdate: () => {
                 controls.update();
-               }
-             })
-          gsap.to(camera.position,{
-            x:  -2.08284219605392,
-            y:  4.168395903617315,
-            z:  0.22332959961178578,
-            duration:duration,
-            ease:"power3.inOut",
-            onUpdate: () => {
-              controls.update();
-            },
-            onComplete:function(){
-              szamlalo++;
-              if(states[6].isVisible == false){
+              }
+            })
+            gsap.to(camera.position,{
+              x:  -2.08284219605392,
+              y:  4.168395903617315,
+              z:  0.22332959961178578,
+              duration:duration,
+              ease:"power3.inOut",
+              onUpdate: () => {
+                controls.update();
+              },
+              onComplete:function(){
+                szamlalo++;
+                if(states[6].isVisible == false){
 
-                gsap.to(controls.target,{
-                  x: 5.4,
-                  y: -5.5,
-                  z: -2,
-                  duration:durationBeKi,
-                  ease:"power3.inOut",
-                  onUpdate: () => {
-                    controls.update();
-                   }
-                 })
-                 gsap.to(camera.position,{
-                   x:  0.8109277209603922,
-                   y:  0.3414749271048718,
-                   z:  -0.6500999023238023,
-                   duration:durationBeKi,
-                   ease:"power3.inOut",
-                   onUpdate: () => {
-                     controls.update();
+                  gsap.to(controls.target,{
+                    x: 5.4,
+                    y: -5.5,
+                    z: -2,
+                    duration:durationBeKi,
+                    ease:"power3.inOut",
+                    onUpdate: () => {
+                      controls.update();
+                    }
+                  })
+                  gsap.to(camera.position,{
+                    x:  0.8109277209603922,
+                    y:  0.3414749271048718,
+                    z:  -0.6500999023238023,
+                    duration:durationBeKi,
+                    ease:"power3.inOut",
+                    onUpdate: () => {
+                      controls.update();
                     },
                     onComplete: function(){
                       states[6].isVisible = true;
@@ -1805,18 +1829,18 @@ if(states[5].isVisible == false){
                     }
                    });
                    }
-            }
+                  }
           });
             }
-           });
-         }
+          });
+        }
 
 
-   if(szamlalo == 20){
+        if(szamlalo == 20){
 
-       showElement(6, s7ID,0, [s7e1, s7e2, s7e3, s7e4], slide7, 5, 20);
-       showElement(6, s7ID,3, [s7e5], slide7, 5, 20);
-       showElement(6, s7ID,3, [s7e6], slide7, 5, 20);
+          showElement(6, s7ID,0, [s7e1, s7e2, s7e3, s7e4], slide7, 5, 20);
+          showElement(6, s7ID, 1,[s7e2a,s7e3a], slide7, 5, 20);
+          hideElement([s7e2a],s7ID,4)
 
       }
     if(szamlalo == 21){
@@ -1911,6 +1935,7 @@ if(states[5].isVisible == false){
       showElement(7, s8ID,0, [s8e1, s8e2, s8e3, s8e4,s8e5,s8e6], slide8, 7, 23);
       showElement(7, s8ID, 2, [s8e3a],slide8,7,23)
       hideElement([s8e1,s8e2,s8e3,s8e3a,s8e4],s8ID,5)
+      showElement(7,s8ID,4,[s8e5a],slide8,7,23)
       hideElement([s8e5],s8ID,6)
 
     }
